@@ -1,0 +1,2651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CBT Sumatif Akhir Semester Genap UPTD SMP Negeri 3 Lobalain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* --- 1. VARIABLES & RESET --- */
+  :root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-light: #e0e7ff;
+    --secondary: #64748b;
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --border: #e2e8f0;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+  .hidden { display: none !important; }
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .items-center { align-items: center; }
+  .justify-between { justify-content: space-between; }
+  .justify-center { justify-content: center; }
+  .text-center { text-align: center; }
+
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--text-main); letter-spacing: -0.02em; }
+  .text-sm { font-size: 0.875rem; }
+  .text-lg { font-size: 1.125rem; }
+  .text-xl { font-size: 1.25rem; }
+  .font-bold { font-weight: 700; }
+  .font-medium { font-weight: 500; }
+  .text-muted { color: var(--text-muted); }
+  .text-primary { color: var(--primary); }
+
+  .card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    outline: none;
+    letter-spacing: 0.5px;
+  }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+  .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: white; box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.39); }
+  .btn-secondary { background-color: #f1f5f9; color: var(--text-main); border: 1px solid var(--border); }
+  .btn-secondary:hover:not(:disabled) { background-color: #e2e8f0; transform: translateY(-2px); }
+  .btn-warning { background-color: var(--warning); color: white; box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.39); }
+  .btn-warning:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.39); }
+  .btn-success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39); }
+  .btn-success:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.39); }
+  .btn-danger { background: linear-gradient(135deg, var(--danger) 0%, #b91c1c 100%); color: white; box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.39); }
+  .btn-danger:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px 0 rgba(239, 68, 68, 0.39); }
+  
+  .form-group { margin-bottom: 1.5rem; text-align: left; }
+  .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
+  .form-control {
+    width: 100%; padding: 0.875rem 1rem;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'Inter', sans-serif; font-size: 1rem;
+    transition: var(--transition);
+    background-color: #f8fafc;
+  }
+  .form-control:focus { background-color: #ffffff; border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px var(--primary-light); }
+
+  #login-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at top right, #e0e7ff, #f8fafc);
+    padding: 1rem;
+  }
+  .login-box { max-width: 420px; width: 100%; text-align: center; backdrop-filter: blur(10px); }
+  .school-logo { 
+    width: 100px; height: 100px; 
+    display: flex; align-items: center; justify-content: center; 
+    margin: 0 auto 1.5rem; 
+  }
+
+  .header-exam { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 1rem 2rem; background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    position: sticky; top: 0; z-index: 10; 
+  }
+  .student-info { display: flex; flex-direction: column; }
+  .student-info h3 { margin-bottom: 0; line-height: 1.2; font-size: 1.1rem; }
+  .timer-box { 
+    background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%); 
+    color: white; padding: 0.6rem 1.2rem; border-radius: 30px; 
+    font-weight: 700; font-family: 'Poppins', sans-serif; letter-spacing: 1.5px; 
+    display: flex; align-items: center; gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+
+  .exam-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; margin-top: 2rem; }
+
+  .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 2px dashed var(--border); padding-bottom: 1.5rem; }
+  .q-number { font-size: 1.4rem; font-weight: 800; color: var(--text-main); font-family: 'Poppins', sans-serif; }
+  .q-number span { color: var(--primary); }
+  .font-controls { display: flex; align-items: center; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 8px;}
+  .font-controls button { 
+    background: white; border: none; padding: 6px 12px; border-radius: 6px; 
+    cursor: pointer; font-weight: 600; color: var(--text-main); transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  .font-controls button:hover { background: var(--primary-light); color: var(--primary); }
+  
+  .q-text { font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.8; transition: font-size 0.3s ease; color: #1e293b; font-weight: 500;}
+  
+  .q-image-container { margin-bottom: 2rem; text-align: center; }
+  .q-image { max-width: 100%; max-height: 350px; border-radius: 12px; border: 1px solid var(--border); object-fit: contain; box-shadow: var(--shadow-sm); }
+  
+  .options-container { display: flex; flex-direction: column; gap: 1rem; }
+  .option-label {
+    display: flex; align-items: center; padding: 1.25rem; 
+    border: 2px solid var(--border); border-radius: 14px; 
+    cursor: pointer; transition: var(--transition); background: white;
+    position: relative; overflow: hidden;
+  }
+  .option-label:hover { border-color: var(--primary-light); background: #f8fafc; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .option-input { 
+    appearance: none; width: 22px; height: 22px; border: 2px solid #cbd5e1; 
+    border-radius: 50%; margin-right: 1.25rem; transition: var(--transition);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .option-input:checked { border-color: var(--primary); background-color: var(--primary); }
+  .option-input:checked::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; }
+  
+  .option-label.selected { border-color: var(--primary); background-color: var(--primary-light); box-shadow: var(--shadow-sm); }
+
+  .exam-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 2px dashed var(--border); }
+  
+  .flag-wrapper { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; color: var(--warning); padding: 0.5rem 1rem; border-radius: 8px; transition: var(--transition); }
+  .flag-wrapper:hover { background: #fef3c7; }
+  .flag-wrapper input { width: 18px; height: 18px; accent-color: var(--warning); cursor: pointer; }
+
+  .grid-title { font-weight: 700; margin-bottom: 1.2rem; text-align: center; font-family: 'Poppins', sans-serif; color: var(--text-main); font-size: 1.1rem; }
+  .number-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; }
+  .num-btn {
+    aspect-ratio: 1; border: 2px solid var(--border); background: white; border-radius: 10px; 
+    font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); 
+    display: flex; align-items: center; justify-content: center; color: var(--text-main);
+    min-height: 44px;
+  }
+  .num-btn:hover { border-color: var(--primary-light); background: #f8fafc; transform: translateY(-2px); }
+  .num-btn.answered { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3); }
+  .num-btn.flagged { background: var(--warning); color: white; border-color: var(--warning); box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+  .num-btn.active { box-shadow: 0 0 0 4px var(--primary-light); transform: scale(1.08); border-color: var(--primary); z-index: 1;}
+  
+  .grid-legend { display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 1.5rem; font-weight: 500; color: var(--text-muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.answered { background: var(--primary); box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3); }
+  .dot.flagged { background: var(--warning); box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3); }
+  .dot.empty { border: 2px solid var(--border); background: white; }
+
+  .overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(5px); z-index: 100; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; text-align: center; padding: 2rem; }
+  .cheat-warning-text { color: var(--danger); font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: 2px; text-shadow: 0 4px 10px rgba(239, 68, 68, 0.5); }
+  
+  .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+  /* --- ADMIN AREA STYLES --- */
+  .admin-tab-nav { display: flex; gap: 10px; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
+  .admin-tab-btn { background: none; border: none; padding: 10px 15px; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: var(--transition); border-bottom: 3px solid transparent; font-family: 'Poppins', sans-serif;}
+  .admin-tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+  .admin-table { width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left; }
+  .admin-table th, .admin-table td { padding: 12px 15px; border-bottom: 1px solid var(--border); }
+  .admin-table th { background-color: #f1f5f9; font-weight: 700; color: var(--text-main); }
+  .admin-table tr:hover { background-color: #f8fafc; }
+  .admin-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px; }
+  .admin-img-preview { max-width: 100px; max-height: 100px; margin-top: 5px; border-radius: 8px; border: 1px dashed var(--border); object-fit: contain; }
+
+  /* CSS Baru untuk Toolbar Matematika */
+  .math-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1.5px solid var(--border);
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .math-group-title {
+    width: 100%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    margin-top: 5px;
+  }
+  .math-group-title:first-child {
+    margin-top: 0;
+  }
+  .math-btn {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+  }
+  .math-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.05);
+  }
+
+  /* Perbaikan Sempurna Scroll Modal Tambah/Edit Soal agar Tidak Terpotong di Atas */
+  #admin-soal-modal.flex {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; 
+    justify-content: flex-start !important; 
+    overflow-y: auto !important; 
+  }
+  #admin-soal-modal .card {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    width: 100%;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseTimer {
+    0% { background: var(--danger); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { background: #991b1b; box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { background: var(--danger); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+  .fade-in-content { animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+  @media (max-width: 860px) {
+    .exam-layout { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem; }
+    .container { padding: 12px; }
+  }
+
+  @media (max-width: 640px) {
+    .header-exam { padding: 0.75rem 1rem; flex-direction: row; justify-content: space-between; align-items: center; }
+    .student-info h3 { font-size: 1rem; }
+    .student-info span { font-size: 0.75rem; }
+    .timer-box { padding: 0.4rem 0.8rem; font-size: 0.9rem; letter-spacing: 1px; }
+
+    .card { padding: 1.25rem; border-radius: 16px; }
+    .q-number { font-size: 1.25rem; }
+    .q-text { font-size: 1.05rem; margin-bottom: 1.5rem; }
+    
+    .option-label { padding: 1rem; border-radius: 12px; align-items: flex-start; }
+    .option-input { margin-top: 0.2rem; }
+    
+    .exam-footer { 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      justify-content: space-between; 
+      margin-top: 2rem; 
+      padding-top: 1rem; 
+    }
+    .exam-footer .btn { 
+      flex: 1;
+      padding: 0.875rem 0.5rem; 
+      font-size: 0.85rem; 
+    }
+    .flag-wrapper { 
+      width: 100%;
+      justify-content: center; 
+      order: -1; 
+      margin-bottom: 0.5rem;
+      background: #fef3c7;
+    }
+
+    .review-grid { gap: 10px; }
+    .review-grid > div { padding: 10px; }
+    
+    .cheat-warning-text { font-size: 1.8rem; }
+  }
+  
+  @media (max-width: 400px) {
+    .header-exam { padding: 0.6rem; }
+    .student-info h3 { font-size: 0.9rem; }
+    .timer-box { font-size: 0.8rem; padding: 0.3rem 0.6rem; }
+    .num-btn { font-size: 0.9rem; }
+    .q-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .font-controls { align-self: flex-end; }
+  }
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<!-- LAYAR LOGIN SISWA -->
+<div id="login-screen">
+  <div class="card login-box">
+    <div class="school-logo">
+      <img id="display-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_the_Ministry_of_Education_and_Culture_of_the_Republic_of_Indonesia.svg" alt="Logo Sekolah" style="width: 100%; height: 100%; object-fit: contain;">
+    </div> 
+    <h2 id="display-nama-sekolah" style="margin-bottom: 0.2rem;">UPTD SMP Negeri 3 Lobalain</h2>
+    <h3 style="margin-bottom: 0.3rem;">Mata Pelajaran Matematika Kelas VIII</h3>
+    <p id="display-tahun-pelajaran" style="margin-bottom: 0.2rem; font-weight: 600; color: var(--text-main);">Tahun Pelajaran 2025/2026</p>
+    <p id="display-jenis-ujian" class="text-muted" style="margin-bottom: 2rem; font-size: 0.9rem; font-weight: 600;">Sumatif Akhir Semester Genap</p>
+    
+    <div id="login-error" class="hidden" style="color: var(--danger); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #fee2e2; padding: 0.8rem; border-radius: 8px; border: 1px solid #fca5a5;"></div>
+
+    <div class="form-group">
+      <label>Nama Lengkap</label>
+      <input type="text" id="input-nama" class="form-control" placeholder="Masukkan nama peserta" autocomplete="off" required onkeydown="if(event.key === 'Enter') attemptLogin()">
+    </div>
+    <div class="form-group">
+      <label>Kelas</label>
+      <select id="input-kelas" class="form-control">
+        <option value="VII A">Kelas VII A</option>
+        <option value="VII B">Kelas VII B</option>
+        <option value="VII C">Kelas VII C</option>
+        <option value="VIII A">Kelas VIII A</option>
+        <option value="VIII B">Kelas VIII B</option>
+        <option value="VIII C">Kelas VIII C</option>
+        <option value="IX A">Kelas IX A</option>
+        <option value="IX B">Kelas IX B</option>
+        <option value="IX C">Kelas IX C</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Token Ujian</label>
+      <div style="position: relative;">
+        <input type="password" id="input-password" class="form-control" placeholder="Masukkan token ujian" required style="padding-right: 2.5rem;" onkeydown="if(event.key === 'Enter') attemptLogin()">
+        <span onclick="togglePassword('input-password', 'eye-icon-student')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+          <svg id="eye-icon-student" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </span>
+      </div>
+    </div>
+    
+    <button id="btn-login" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; padding: 1rem; font-size: 1.05rem;" onclick="attemptLogin()">MULAI UJIAN</button>
+    
+    <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+      <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem; font-size: 0.85rem;" onclick="showAdminLogin()">LOGIN ADMIN</button>
+      <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem; font-size: 0.85rem; margin-top: 10px; background-color: transparent; border-color: var(--primary); color: var(--primary);" onmouseover="this.style.backgroundColor='var(--primary-light)'" onmouseout="this.style.backgroundColor='transparent'" onclick="showSuperAdminLogin()">LOGIN SUPER ADMIN</button>
+    </div>
+
+    <!-- FITUR BARU: CATATAN KAKI DEVELOPER DAN IKON WHATSAPP -->
+    <div style="margin-top: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted);">
+      <span style="font-weight: 500; letter-spacing: 0.3px;">by <strong style="color: var(--text-main); font-weight: 600;">Dev NYM</strong></span>
+      <a href="https://wa.me/6282359562076" target="_blank" style="display: inline-flex; align-items: center; color: #25D366; text-decoration: none; transition: var(--transition);" title="Hubungi Developer via WhatsApp" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.927-3.561 7.928-7.928a7.89 7.89 0 0 0-2.325-5.645zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- LAYAR LOGIN ADMIN BIASA -->
+<div id="admin-login-screen" class="hidden" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at top right, #e0e7ff, #f8fafc); padding: 1rem;">
+  <div class="card login-box">
+    <div class="school-logo">
+      <img id="display-logo-admin" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_the_Ministry_of_Education_and_Culture_of_the_Republic_of_Indonesia.svg" alt="Logo Sekolah" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <h2 style="margin-bottom: 0.2rem;">Portal Admin CBT</h2>
+    <p id="display-nama-sekolah-admin" class="text-muted" style="margin-bottom: 2rem; font-size: 0.9rem;">UPTD SMP Negeri 3 Lobalain</p>
+    
+    <div id="admin-login-error" class="hidden" style="color: var(--danger); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #fee2e2; padding: 0.8rem; border-radius: 8px; border: 1px solid #fca5a5;"></div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="admin-username" class="form-control" placeholder="Masukkan username admin" autocomplete="off" required onkeydown="if(event.key === 'Enter') attemptAdminLogin()">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <div style="position: relative;">
+        <input type="password" id="admin-password" class="form-control" placeholder="Masukkan password admin" required style="padding-right: 2.5rem;" onkeydown="if(event.key === 'Enter') attemptAdminLogin()">
+        <span onclick="togglePassword('admin-password', 'eye-icon-admin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+          <svg id="eye-icon-admin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </span>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; padding: 1rem; font-size: 1.05rem;" onclick="attemptAdminLogin()">MASUK ADMIN</button>
+    
+    <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+      <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem; font-size: 0.85rem;" onclick="hideAdminLogin()">KEMBALI KE LOGIN SISWA</button>
+    </div>
+  </div>
+</div>
+
+<!-- LAYAR LOGIN SUPER ADMIN -->
+<div id="super-admin-login-screen" class="hidden" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at top left, #fee2e2, #f8fafc); padding: 1rem;">
+  <div class="card login-box" style="border: 2px solid #fca5a5; box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.2);">
+    <div class="school-logo" style="background: linear-gradient(135deg, var(--danger) 0%, #f87171 100%);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    </div>
+    <h2 style="margin-bottom: 0.2rem; color: var(--danger);">Portal Super Admin</h2>
+    <p class="text-muted" style="margin-bottom: 2rem; font-size: 0.9rem;">Akses Master Sistem CBT</p>
+    
+    <div id="super-admin-login-error" class="hidden" style="color: var(--danger); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #fee2e2; padding: 0.8rem; border-radius: 8px; border: 1px solid #fca5a5;"></div>
+
+    <div class="form-group">
+      <label>Username Super Admin</label>
+      <input type="text" id="super-admin-username" class="form-control" placeholder="Masukkan username super admin" autocomplete="off" required onkeydown="if(event.key === 'Enter') attemptSuperAdminLogin()">
+    </div>
+    <div class="form-group">
+      <label>Password Super Admin</label>
+      <div style="position: relative;">
+        <input type="password" id="super-admin-password" class="form-control" placeholder="Masukkan password super admin" required style="padding-right: 2.5rem;" onkeydown="if(event.key === 'Enter') attemptSuperAdminLogin()">
+        <span onclick="togglePassword('super-admin-password', 'eye-icon-superadmin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+          <svg id="eye-icon-superadmin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </span>
+      </div>
+    </div>
+    
+    <button class="btn btn-danger" style="width: 100%; margin-top: 1.5rem; padding: 1rem; font-size: 1.05rem;" onclick="attemptSuperAdminLogin()">MASUK SUPER ADMIN</button>
+    
+    <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+      <button class="btn btn-secondary" style="width: 100%; padding: 0.6rem; font-size: 0.85rem;" onclick="hideSuperAdminLogin()">KEMBALI KE LOGIN SISWA</button>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL DASHBOARD ADMIN UTAMA -->
+<div id="admin-dashboard-screen" class="hidden" style="min-height: 100vh; background-color: var(--bg-body); padding: 2rem 1rem;">
+  <div class="container" style="max-width: 1200px;">
+    <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 1.5rem;">
+      <div>
+        <h2 id="dashboard-title-text" style="font-size: 1.5rem;">Dashboard Administrator</h2>
+        <p class="text-muted text-sm">Kelola bank soal, token, dan pantau hasil ujian siswa secara real-time</p>
+      </div>
+      <button class="btn btn-danger" onclick="logoutAdmin()">KELUAR DASHBOARD</button>
+    </div>
+
+    <div class="admin-tab-nav">
+      <button class="admin-tab-btn active" onclick="switchAdminTab('tab-soal')">Kelola Bank Soal</button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('tab-pengaturan')">Pengaturan Ujian</button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('tab-hasil')">Rekap Hasil Ujian</button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('tab-analisis')">Analisis Soal</button>
+      <button class="admin-tab-btn" id="tab-btn-manajemen-admin" onclick="switchAdminTab('tab-manajemen-admin')" style="display: none; color: var(--danger);">Manajemen Admin</button>
+    </div>
+
+    <!-- TAB 1: KELOLA BANK SOAL -->
+    <div id="admin-tab-soal" class="admin-tab-content">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.2rem;">Koleksi Bank Soal</h3>
+          <div style="display: flex; gap: 10px;">
+            <input type="file" id="import-soal-file" style="display: none;" accept=".json" onchange="importSoalDariFile(event)">
+            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="triggerImportFile()">IMPORT JSON</button>
+            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="openTambahSoalModal()">+ TAMBAH SOAL</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="admin-table" id="admin-soal-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">No</th>
+                <th>Teks Soal</th>
+                <th>Opsi Jawaban</th>
+                <th style="width: 80px;">Kunci</th>
+                <th style="width: 150px; text-align: center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="admin-soal-tbody">
+              <!-- Render otomatis via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: PENGATURAN UJIAN -->
+    <div id="admin-tab-pengaturan" class="admin-tab-content hidden">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center;">Konfigurasi Token, Jenis Ujian & Tanggal</h3>
+        
+        <div id="settings-success" class="hidden" style="color: var(--success); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #ecfdf5; padding: 0.8rem; border-radius: 8px; border: 1px solid #a7f3d0;">Pengaturan berhasil disimpan!</div>
+
+        <!-- Kolom input dinamis baru untuk jenis ujian -->
+        <div class="form-group">
+          <label>Nama / Jenis Ujian</label>
+          <input type="text" id="admin-setting-jenis-ujian" class="form-control" style="font-weight: 600;" placeholder="Contoh: Sumatif Akhir Semester Genap">
+          <small class="text-muted">Mengubah teks "Sumatif Akhir Semester Genap" di halaman login siswa.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Tahun Pelajaran</label>
+          <input type="text" id="admin-setting-tahun-pelajaran" class="form-control" style="font-weight: 600;" placeholder="Contoh: Tahun Pelajaran 2025/2026">
+          <small class="text-muted">Mengubah teks tahun pelajaran di halaman login siswa.</small>
+        </div>
+
+        <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;">
+          <label>Nama Sekolah</label>
+          <input type="text" id="admin-setting-nama-sekolah" class="form-control" placeholder="Contoh: UPTD SMP Negeri 3 Lobalain">
+        </div>
+
+        <div class="form-group">
+          <label>Alamat Sekolah / Nama Jalan</label>
+          <textarea id="admin-setting-alamat-sekolah" class="form-control" rows="2" placeholder="Contoh: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT"></textarea>
+        </div>
+
+        <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;">
+          <label>Logo Sekolah (URL / Base64)</label>
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <div style="flex: 1;">
+              <input type="text" id="admin-setting-logo-url" class="form-control" placeholder="URL gambar atau Base64" style="margin-bottom: 5px;" oninput="document.getElementById('admin-setting-logo-preview').src = this.value">
+              <input type="file" id="admin-setting-logo-file" accept="image/*" class="form-control" onchange="convertSettingLogo(event)">
+            </div>
+            <img id="admin-setting-logo-preview" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_the_Ministry_of_Education_and_Culture_of_the_Republic_of_Indonesia.svg" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid var(--border); border-radius: 8px; background: white;">
+          </div>
+          <small class="text-muted">Logo ini akan muncul di halaman login siswa.</small>
+        </div>
+
+        <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;">
+          <label>Nama Kepala Sekolah</label>
+          <input type="text" id="admin-setting-kepsek-nama" class="form-control" placeholder="Contoh: Siprianus P. L. Sula, S.Pd" value="Siprianus P. L. Sula, S.Pd">
+        </div>
+        <div class="form-group">
+          <label>NIP Kepala Sekolah</label>
+          <input type="text" id="admin-setting-kepsek-nip" class="form-control" placeholder="Contoh: 19780512 200501 1 008" value="19780512 200501 1 008">
+        </div>
+        
+        <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;">
+          <label>Token Ujian Aktif</label>
+          <input type="text" id="admin-setting-token" class="form-control" style="font-weight: 700; letter-spacing: 1px;" value="spentiglob26">
+          <small class="text-muted">Gunakan token ini agar siswa dapat masuk ke ruang ujian.</small>
+        </div>
+        <div class="form-group">
+          <label>Tanggal Pelaksanaan Ujian</label>
+          <input type="date" id="admin-setting-tanggal" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Durasi Ujian (Menit)</label>
+          <input type="number" id="admin-setting-durasi" class="form-control" value="60">
+        </div>
+
+        <button class="btn btn-success" style="width: 100%; padding: 1rem; font-size: 1rem;" onclick="simpanPengaturanUjian()">SIMPAN PENGATURAN</button>
+      </div>
+    </div>
+
+    <!-- TAB 3: REKAP HASIL UJIAN -->
+    <div id="admin-tab-hasil" class="admin-tab-content hidden">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 1.5rem;">
+          <div>
+            <h3 style="font-size: 1.2rem;">Daftar Nilai Siswa</h3>
+            <p class="text-muted text-sm">Hasil pengerjaan sumatif siswa langsung dari database Supabase</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="exportHasilExcel()">EKSPOR EXCEL</button>
+            <button class="btn btn-primary" onclick="cetakHasilPDF()">CETAK / PRINT</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="admin-table" id="admin-hasil-table">
+            <thead>
+              <tr>
+                <th>Waktu Submit</th>
+                <th>Nama Siswa</th>
+                <th>Kelas</th>
+                <th>Skor Benar</th>
+                <th>Total Soal</th>
+                <th>Nilai Akhir (100)</th>
+                <th>Status Kecurangan</th>
+              </tr>
+            </thead>
+            <tbody id="admin-hasil-tbody">
+              <!-- Render otomatis via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: ANALISIS SOAL -->
+    <div id="admin-tab-analisis" class="admin-tab-content hidden">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 1.5rem;">
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Analisis Tingkat Kesukaran Soal</h3>
+            <p class="text-muted text-sm" style="margin-bottom: 0;">Berdasarkan persentase siswa yang menjawab benar dari total yang mengumpulkan.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="exportAnalisisExcel()">EKSPOR EXCEL</button>
+            <button class="btn btn-primary" onclick="cetakAnalisisPDF()">CETAK / PRINT</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width: 60px; text-align: center;">No</th>
+                <th>Cuplikan Teks Soal</th>
+                <th style="text-align: center;">Jawab Benar</th>
+                <th style="text-align: center;">Jawab Salah</th>
+                <th style="text-align: center;">Persentase (%)</th>
+                <th style="text-align: center;">Kategori</th>
+              </tr>
+            </thead>
+            <tbody id="admin-analisis-tbody">
+              <!-- Render otomatis via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: MANAJEMEN ADMIN (HANYA SUPER ADMIN) -->
+    <div id="admin-tab-manajemen-admin" class="admin-tab-content hidden">
+      <div class="card" style="max-width: 600px; margin: 0 auto; border: 2px solid #fca5a5;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--danger);">Reset Username & Password Admin</h3>
+        <p class="text-muted text-center text-sm" style="margin-bottom: 1.5rem;">Gunakan panel ini jika Guru/Admin lupa password untuk mengakses dashboard utama.</p>
+        
+        <div id="credentials-success" class="hidden" style="color: var(--success); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #ecfdf5; padding: 0.8rem; border-radius: 8px; border: 1px solid #a7f3d0;">Kredensial Admin berhasil diperbarui!</div>
+
+        <div class="form-group" style="padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--secondary); margin-bottom: 2rem;">
+          <label style="color: var(--secondary);">Username Admin Saat Ini (Tersimpan):</label>
+          <div id="current-admin-user-display" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">admin</div>
+        </div>
+
+        <div class="form-group">
+          <label>Username Admin Baru</label>
+          <input type="text" id="admin-new-username" class="form-control" placeholder="Contoh: adminbaru">
+        </div>
+        <div class="form-group">
+          <label>Password Admin Baru</label>
+          <div style="position: relative;">
+            <input type="password" id="admin-new-password" class="form-control" placeholder="Masukkan password baru" style="padding-right: 2.5rem;">
+            <span onclick="togglePassword('admin-new-password', 'eye-icon-new-admin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+              <svg id="eye-icon-new-admin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
+          </div>
+        </div>
+
+        <button class="btn btn-danger" style="width: 100%; padding: 1rem; font-size: 1rem;" onclick="simpanKredensialAdmin()">RESET & UPDATE KREDENSIAL ADMIN</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL TAMBAH/EDIT SOAL -->
+<div id="admin-soal-modal" class="overlay hidden" style="background: rgba(15, 23, 42, 0.7); overflow-y: auto; padding: 2rem 1rem;">
+  <div class="card" style="max-width: 800px; width: 100%; color: var(--text-main); text-align: left; position: relative;">
+    <h3 id="modal-soal-title" style="font-size: 1.3rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Tambah / Edit Data Soal</h3>
+    
+    <!-- TOOLBAR MATEMATIKA -->
+    <div class="math-toolbar">
+      <div class="math-group-title">Eksponen & Pangkat</div>
+      <button class="math-btn" onclick="insertMathSymbol('²')">²</button>
+      <button class="math-btn" onclick="insertMathSymbol('³')">³</button>
+      <button class="math-btn" onclick="insertMathSymbol('⁴')">⁴</button>
+      <button class="math-btn" onclick="insertMathSymbol('ⁿ')">ⁿ</button>
+      <button class="math-btn" onclick="insertMathSymbol('^')">^</button>
+
+      <div class="math-group-title">Akar & Pecahan</div>
+      <button class="math-btn" onclick="insertMathSymbol('√')">√</button>
+      <button class="math-btn" onclick="insertMathSymbol('∛')">∛</button>
+      <button class="math-btn" onclick="insertMathSymbol('½')">½</button>
+      <button class="math-btn" onclick="insertMathSymbol('⅓')">⅓</button>
+      <button class="math-btn" onclick="insertMathSymbol('¼')">¼</button>
+      <button class="math-btn" onclick="insertMathSymbol('¾')">¾</button>
+
+      <div class="math-group-title">Operator & Simbol Relasional</div>
+      <button class="math-btn" onclick="insertMathSymbol('×')">×</button>
+      <button class="math-btn" onclick="insertMathSymbol('÷')">÷</button>
+      <button class="math-btn" onclick="insertMathSymbol('±')">±</button>
+      <button class="math-btn" onclick="insertMathSymbol('≠')">≠</button>
+      <button class="math-btn" onclick="insertMathSymbol('≤')">≤</button>
+      <button class="math-btn" onclick="insertMathSymbol('≥')">≥</button>
+      <button class="math-btn" onclick="insertMathSymbol('≈')">≈</button>
+      <button class="math-btn" onclick="insertMathSymbol('∞')">∞</button>
+
+      <div class="math-group-title">Geometri & Lainnya</div>
+      <button class="math-btn" onclick="insertMathSymbol('π')">π</button>
+      <button class="math-btn" onclick="insertMathSymbol('°')">°</button>
+      <button class="math-btn" onclick="insertMathSymbol('∠')">∠</button>
+      <button class="math-btn" onclick="insertMathSymbol('Δ')">Δ</button>
+      <button class="math-btn" onclick="insertMathSymbol('∑')">∑</button>
+      <button class="math-btn" onclick="insertMathSymbol('∫')">∫</button>
+
+      <div class="math-group-title">Huruf Yunani</div>
+      <button class="math-btn" onclick="insertMathSymbol('α')">α</button>
+      <button class="math-btn" onclick="insertMathSymbol('β')">β</button>
+      <button class="math-btn" onclick="insertMathSymbol('γ')">γ</button>
+      <button class="math-btn" onclick="insertMathSymbol('θ')">θ</button>
+      <button class="math-btn" onclick="insertMathSymbol('λ')">λ</button>
+      <button class="math-btn" onclick="insertMathSymbol('μ')">μ</button>
+    </div>
+
+    <input type="hidden" id="modal-soal-id">
+    <div class="form-group">
+      <label>Nomor Urut Soal (No)</label>
+      <input type="number" id="modal-soal-no" class="form-control" placeholder="Contoh: 1" style="width: 150px;">
+    </div>
+    
+    <div class="form-group">
+      <label>Teks Soal</label>
+      <textarea id="modal-soal-teks" class="form-control" rows="4" placeholder="Tuliskan materi soal di sini..." onfocus="setActiveMathInput('modal-soal-teks')"></textarea>
+    </div>
+
+    <div class="admin-form-row">
+      <div class="form-group">
+        <label>URL Gambar Soal (Opsional)</label>
+        <input type="text" id="modal-soal-gbr-url" class="form-control" placeholder="https://contoh.com/gambar.png" oninput="previewImage('modal-soal-gbr-url', 'preview-soal-gbr')">
+      </div>
+      <div class="form-group">
+        <label>Upload Gambar Lokal (Opsional)</label>
+        <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-url', 'preview-soal-gbr')">
+      </div>
+    </div>
+    <div style="text-align: center; margin-bottom: 15px;">
+      <img id="preview-soal-gbr" class="admin-img-preview" src="" alt="Preview Gambar Soal" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Opsi A -->
+    <fieldset style="border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+      <legend style="padding: 0 10px; font-weight: bold; color: var(--primary);">OPSI A</legend>
+      <div class="form-group">
+        <label>Teks Opsi A</label>
+        <input type="text" id="modal-soal-opt-a" class="form-control" placeholder="Teks Pilihan A" onfocus="setActiveMathInput('modal-soal-opt-a')">
+      </div>
+      <div class="admin-form-row">
+        <div class="form-group">
+          <label>URL Gambar Opsi A</label>
+          <input type="text" id="modal-soal-gbr-a" class="form-control" placeholder="https://contoh.com/opsi-a.png" oninput="previewImage('modal-soal-gbr-a', 'preview-gbr-a')">
+        </div>
+        <div class="form-group">
+          <label>Upload Gambar Opsi A</label>
+          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-a', 'preview-gbr-a')">
+        </div>
+      </div>
+      <div style="text-align: center;"><img id="preview-gbr-a" class="admin-img-preview" src="" alt="Preview Gambar A" onerror="this.style.display='none'"></div>
+    </fieldset>
+
+    <!-- Opsi B -->
+    <fieldset style="border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+      <legend style="padding: 0 10px; font-weight: bold; color: var(--primary);">OPSI B</legend>
+      <div class="form-group">
+        <label>Teks Opsi B</label>
+        <input type="text" id="modal-soal-opt-b" class="form-control" placeholder="Teks Pilihan B" onfocus="setActiveMathInput('modal-soal-opt-b')">
+      </div>
+      <div class="admin-form-row">
+        <div class="form-group">
+          <label>URL Gambar Opsi B</label>
+          <input type="text" id="modal-soal-gbr-b" class="form-control" placeholder="https://contoh.com/opsi-b.png" oninput="previewImage('modal-soal-gbr-b', 'preview-gbr-b')">
+        </div>
+        <div class="form-group">
+          <label>Upload Gambar Opsi B</label>
+          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-b', 'preview-gbr-b')">
+        </div>
+      </div>
+      <div style="text-align: center;"><img id="preview-gbr-b" class="admin-img-preview" src="" alt="Preview Gambar B" onerror="this.style.display='none'"></div>
+    </fieldset>
+
+    <!-- Opsi C -->
+    <fieldset style="border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+      <legend style="padding: 0 10px; font-weight: bold; color: var(--primary);">OPSI C</legend>
+      <div class="form-group">
+        <label>Teks Opsi C</label>
+        <input type="text" id="modal-soal-opt-c" class="form-control" placeholder="Teks Pilihan C" onfocus="setActiveMathInput('modal-soal-opt-c')">
+      </div>
+      <div class="admin-form-row">
+        <div class="form-group">
+          <label>URL Gambar Opsi C</label>
+          <input type="text" id="modal-soal-gbr-c" class="form-control" placeholder="https://contoh.com/opsi-c.png" oninput="previewImage('modal-soal-gbr-c', 'preview-gbr-c')">
+        </div>
+        <div class="form-group">
+          <label>Upload Gambar Opsi C</label>
+          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-c', 'preview-gbr-c')">
+        </div>
+      </div>
+      <div style="text-align: center;"><img id="preview-gbr-c" class="admin-img-preview" src="" alt="Preview Gambar C" onerror="this.style.display='none'"></div>
+    </fieldset>
+
+    <!-- Opsi D -->
+    <fieldset style="border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+      <legend style="padding: 0 10px; font-weight: bold; color: var(--primary);">OPSI D</legend>
+      <div class="form-group">
+        <label>Teks Opsi D</label>
+        <input type="text" id="modal-soal-opt-d" class="form-control" placeholder="Teks Pilihan D" onfocus="setActiveMathInput('modal-soal-opt-d')">
+      </div>
+      <div class="admin-form-row">
+        <div class="form-group">
+          <label>URL Gambar Opsi D</label>
+          <input type="text" id="modal-soal-gbr-d" class="form-control" placeholder="https://contoh.com/opsi-d.png" oninput="previewImage('modal-soal-gbr-d', 'preview-gbr-d')">
+        </div>
+        <div class="form-group">
+          <label>Upload Gambar Opsi D</label>
+          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-d', 'preview-gbr-d')">
+        </div>
+      </div>
+      <div style="text-align: center;"><img id="preview-gbr-d" class="admin-img-preview" src="" alt="Preview Gambar D" onerror="this.style.display='none'"></div>
+    </fieldset>
+
+    <div class="form-group">
+      <label>Kunci Jawaban Benar</label>
+      <select id="modal-soal-kunci" class="form-control">
+        <option value="A">Opsi A</option>
+        <option value="B">Opsi B</option>
+        <option value="C">Opsi C</option>
+        <option value="D">Opsi D</option>
+      </select>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); padding-top: 15px; margin-top: 20px;">
+      <button class="btn btn-secondary" onclick="closeTambahSoalModal()">Batal</button>
+      <button class="btn btn-success" onclick="simpanSoalManual()">Simpan Data</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===========================================================================
+// KONFIGURASI SUPABASE (Masukkan kredensial Supabase Anda di sini)
+// ===========================================================================
+const SUPABASE_URL = "https://wlcvyijykqzqqkdzytnk.supabase.co"; // Ganti URL ini
+const SUPABASE_ANON_KEY = "sb_publishable_ezfGAGYvP3_zg4k4Tqir5g_t_E4jrxS"; // Ganti Key ini
+// ===========================================================================
+
+// Kredensial Hardcode Super Admin
+const SUPER_ADMIN_USER = "superadmin";
+const SUPER_ADMIN_PASS = "superadmin123";
+
+let questions = []; 
+let EXAM_DURATION_MINUTES = 60; 
+
+let currentQuestionIndex = 0;
+let userAnswers = {}; 
+let flaggedQuestions = {}; 
+let timeLeft = EXAM_DURATION_MINUTES * 60;
+let timerInterval;
+let studentData = {};
+let isExamRunning = false;
+let cheatLogs = [];
+let cheatStrikes = 0; 
+const MAX_STRIKES = 3; 
+let currentActiveRole = ""; // Untuk melacak yang login: 'admin' atau 'superadmin'
+
+// Admin System Variables
+let adminToken = "spentiglob26";
+let adminTanggalUjian = "";
+let adminJenisUjian = "Sumatif Akhir Semester Genap"; 
+let adminTahunPelajaran = "Tahun Pelajaran 2025/2026"; 
+let adminNamaSekolah = "UPTD SMP Negeri 3 Lobalain";
+let adminAlamatSekolah = "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
+let adminLogo = "https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_the_Ministry_of_Education_and_Culture_of_the_Republic_of_Indonesia.svg";
+let adminKepsekName = "Siprianus P. L. Sula, S.Pd";
+let adminKepsekNip = "19780512 200501 1 008";
+let fetchedResults = [];
+
+// Variabel Penahan ID Input Aktif untuk Toolbar Matematika
+let activeMathInputId = "modal-soal-teks";
+
+// Load custom settings from localStorage if any
+if(localStorage.getItem('cbt_admin_token')) { adminToken = localStorage.getItem('cbt_admin_token'); }
+if(localStorage.getItem('cbt_admin_durasi')) {
+    EXAM_DURATION_MINUTES = parseInt(localStorage.getItem('cbt_admin_durasi'));
+    timeLeft = EXAM_DURATION_MINUTES * 60;
+}
+if(localStorage.getItem('cbt_admin_tanggal')) { adminTanggalUjian = localStorage.getItem('cbt_admin_tanggal'); }
+if(localStorage.getItem('cbt_admin_jenis_ujian')) { adminJenisUjian = localStorage.getItem('cbt_admin_jenis_ujian'); }
+if(localStorage.getItem('cbt_admin_tahun_pelajaran')) { adminTahunPelajaran = localStorage.getItem('cbt_admin_tahun_pelajaran'); }
+if(localStorage.getItem('cbt_admin_nama_sekolah')) { adminNamaSekolah = localStorage.getItem('cbt_admin_nama_sekolah'); }
+if(localStorage.getItem('cbt_admin_alamat_sekolah')) { adminAlamatSekolah = localStorage.getItem('cbt_admin_alamat_sekolah'); }
+if(localStorage.getItem('cbt_admin_logo')) { adminLogo = localStorage.getItem('cbt_admin_logo'); }
+if(localStorage.getItem('cbt_admin_kepsek_nama')) { adminKepsekName = localStorage.getItem('cbt_admin_kepsek_nama'); }
+if(localStorage.getItem('cbt_admin_kepsek_nip')) { adminKepsekNip = localStorage.getItem('cbt_admin_kepsek_nip'); }
+
+// Sinkronkan teks jenis ujian ke tampilan login siswa saat awal dibuka
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
+  document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
+  document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
+});
+
+// Mencegah Copy Paste
+document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
+document.addEventListener('cut', (e) => { e.preventDefault(); return false; });
+document.addEventListener('paste', (e) => { e.preventDefault(); return false; });
+
+// Fungsi Toggle Password Visibility
+function togglePassword(inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon = document.getElementById(iconId);
+  if (input.type === "password") {
+    input.type = "text";
+    icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+  } else {
+    input.type = "password";
+    icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+  }
+}
+
+window.onload = function() {
+    // Sinkronisasi ulang teks jenis ujian jika ada di local storage
+    document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
+    document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
+    document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
+    document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
+    document.getElementById('display-logo').src = adminLogo;
+    document.getElementById('display-logo-admin').src = adminLogo;
+
+    const savedState = localStorage.getItem('cbt_exam_state');
+    if(savedState) {
+        const state = JSON.parse(savedState);
+        if(confirm("Ditemukan sesi ujian yang belum selesai. Apakah Anda ingin melanjutkan?")) {
+            studentData = state.studentData;
+            userAnswers = state.answers;
+            flaggedQuestions = state.flags;
+            timeLeft = state.timeLeft;
+            questions = state.questions || []; 
+            
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('display-nama').innerText = studentData.nama;
+            document.getElementById('display-kelas').innerText = studentData.kelas;
+            startExam(true);
+        } else {
+            localStorage.removeItem('cbt_exam_state');
+        }
+    }
+}
+
+// 1. FUNGSI LOGIN & FETCH SOAL DARI SUPABASE
+function attemptLogin() {
+  const nama = document.getElementById('input-nama').value.trim();
+  const kelas = document.getElementById('input-kelas').value;
+  const pass = document.getElementById('input-password').value.trim();
+  const errorDiv = document.getElementById('login-error');
+  const btnLogin = document.getElementById('btn-login');
+
+  if(!nama || !pass) {
+    errorDiv.innerText = "⚠️ Nama dan Token wajib diisi!";
+    errorDiv.classList.remove('hidden');
+    return;
+  }
+
+  // Cek token dinamis dari setelan Admin
+  if(pass !== adminToken) {
+    errorDiv.innerText = "⚠️ Token ujian salah atau belum diatur!";
+    errorDiv.classList.remove('hidden');
+    return;
+  }
+
+  btnLogin.innerText = "Memuat Soal...";
+  btnLogin.disabled = true;
+  
+  studentData = { nama: nama, kelas: kelas };
+  document.getElementById('display-nama').innerText = nama;
+  document.getElementById('display-kelas').innerText = kelas;
+
+  // Mengambil data langsung dari Supabase REST API
+  fetch(`${SUPABASE_URL}/rest/v1/BankSoal?select=*&order=No.asc`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(response => {
+    if(!response.ok) {
+        throw new Error("Gagal mengambil soal dari Supabase. Periksa kembali konfigurasi URL & API Key.");
+    }
+    return response.json();
+  })
+  .then(data => {
+    questions = [];
+    data.forEach(row => {
+      if (row["Soal"] && row["Soal"].toString().trim() !== "") {
+        questions.push({
+          id: row["No"],
+          text: row["Soal"],
+          imageUrl: row["URL Gambar Soal"] ? row["URL Gambar Soal"].toString().trim() : "",
+          options: [
+            { text: row["Opsi A"] ? row["Opsi A"].toString() : "", img: row["Gambar Opsi A"] ? row["Gambar Opsi A"].toString().trim() : "" },
+            { text: row["Opsi B"] ? row["Opsi B"].toString() : "", img: row["Gambar Opsi B"] ? row["Gambar Opsi B"].toString().trim() : "" },
+            { text: row["Opsi C"] ? row["Opsi C"].toString() : "", img: row["Gambar Opsi C"] ? row["Gambar Opsi C"].toString().trim() : "" },
+            { text: row["Opsi D"] ? row["Opsi D"].toString() : "", img: row["Gambar Opsi D"] ? row["Gambar Opsi D"].toString().trim() : "" }
+          ],
+          answer: row["Kunci Jawaban"] ? row["Kunci Jawaban"].toString() : ""
+        });
+      }
+    });
+
+    if (questions.length === 0) {
+        errorDiv.innerText = "Tidak ada soal tersedia di tabel 'BankSoal' Anda.";
+        errorDiv.classList.remove('hidden');
+        btnLogin.innerText = "MULAI UJIAN";
+        btnLogin.disabled = false;
+        return;
+    }
+
+    document.getElementById('login-screen').classList.add('hidden');
+    requestFullScreen();
+    startExam(false);
+  })
+  .catch(err => {
+      errorDiv.innerText = err.message || "Koneksi gagal. Coba lagi.";
+      errorDiv.classList.remove('hidden');
+      btnLogin.innerText = "MULAI UJIAN";
+      btnLogin.disabled = false;
+  });
+}
+
+function requestFullScreen() {
+    var docElm = document.documentElement;
+    if (docElm.requestFullscreen) { docElm.requestFullscreen(); }
+    else if (docElm.mozRequestFullScreen) { docElm.mozRequestFullScreen(); }
+    else if (docElm.webkitRequestFullScreen) { docElm.webkitRequestFullScreen(); }
+    else if (docElm.msRequestFullscreen) { docElm.msRequestFullscreen(); }
+}
+
+// 2. MEMULAI UJIAN
+function startExam(isResume) {
+  isExamRunning = true;
+  document.getElementById('exam-screen').classList.remove('hidden');
+  
+  if(!isResume) {
+      userAnswers = {};
+      flaggedQuestions = {};
+      timeLeft = EXAM_DURATION_MINUTES * 60;
+  }
+  
+  buildNumberGrid();
+  renderQuestion(currentQuestionIndex);
+  
+  timerInterval = setInterval(updateTimer, 1000);
+  setupCheatDetection();
+  saveStateToLocal();
+}
+
+function saveStateToLocal() {
+    if(isExamRunning) {
+        const state = {
+            studentData: studentData,
+            answers: userAnswers,
+            flags: flaggedQuestions,
+            timeLeft: timeLeft,
+            questions: questions 
+        };
+        localStorage.setItem('cbt_exam_state', JSON.stringify(state));
+    }
+}
+
+// 3. RENDER SOAL & GRID
+function renderQuestion(index) {
+  const q = questions[index];
+  
+  const animator = document.getElementById('content-animator');
+  animator.classList.remove('fade-in-content');
+  void animator.offsetWidth; 
+  animator.classList.add('fade-in-content');
+
+  document.getElementById('q-num-display').innerText = index + 1;
+  document.getElementById('question-area').innerHTML = q.text.replace(/\n/g, '<br>');
+  
+  const imgArea = document.getElementById('question-image-area');
+  const imgElement = document.getElementById('q-image');
+  
+  if (q.imageUrl && q.imageUrl.trim() !== "") {
+    imgElement.src = q.imageUrl;
+    imgElement.style.display = 'inline-block';
+    imgArea.classList.remove('hidden');
+  } else {
+    imgArea.classList.add('hidden');
+    imgElement.src = "";
+  }
+  
+  const optionsArea = document.getElementById('options-area');
+  optionsArea.innerHTML = '';
+  const labels = ['A', 'B', 'C', 'D'];
+  q.options.forEach((optObj, i) => {
+    const optText = optObj.text;
+    const optImg = optObj.img;
+    const isSelected = userAnswers[index] === optText;
+    
+    let imageTag = "";
+    if (optImg && optImg.trim() !== "") {
+      imageTag = `<img src="${optImg}" style="max-width: 100%; max-height: 150px; border-radius: 8px; margin-top: 10px; display: block; border: 1px solid var(--border);">`;
+    }
+
+    const div = document.createElement('label');
+    div.className = `option-label ${isSelected ? 'selected' : ''}`;
+    div.innerHTML = `
+      <input type="radio" name="opt${index}" class="option-input" value="${optText}" ${isSelected ? 'checked' : ''} onchange="selectOption(${index}, '${optText.replace(/'/g, "\\'")}')">
+      <div style="font-weight: 700; margin-right: 15px; color: ${isSelected ? 'var(--primary)' : 'var(--text-muted)'}; font-size: 1.1rem;">${labels[i]}.</div>
+      <div style="flex: 1; font-weight: 500; font-size: 0.95rem;">
+        ${optText}
+        ${imageTag}
+      </div>
+    `;
+    optionsArea.appendChild(div);
+  });
+
+  document.getElementById('flag-checkbox').checked = flaggedQuestions[index] || false;
+
+  document.getElementById('btn-prev').disabled = index === 0;
+  document.getElementById('btn-next').disabled = index === questions.length - 1;
+
+  updateGridHighlight();
+}
+
+function buildNumberGrid() {
+  const grid = document.getElementById('number-grid');
+  grid.innerHTML = '';
+  questions.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'num-btn';
+    btn.id = `grid-btn-${i}`;
+    btn.innerText = i + 1;
+    btn.onclick = () => {
+      currentQuestionIndex = i;
+      renderQuestion(i);
+    };
+    grid.appendChild(btn);
+  });
+  updateGridStatus();
+}
+
+// 4. INTERAKSI USER
+function selectOption(qIndex, optionText) {
+  userAnswers[qIndex] = optionText;
+  
+  const labels = document.querySelectorAll('#options-area .option-label');
+  labels.forEach(label => label.classList.remove('selected'));
+  
+  const checkedInput = document.querySelector(`input[name="opt${qIndex}"]:checked`);
+  if(checkedInput) {
+     checkedInput.parentElement.classList.add('selected');
+     checkedInput.nextElementSibling.style.color = 'var(--primary)';
+  }
+
+  updateGridStatus();
+  saveStateToLocal();
+}
+
+function toggleFlag() {
+  const isChecked = document.getElementById('flag-checkbox').checked;
+  if(isChecked) {
+    flaggedQuestions[currentQuestionIndex] = true;
+  } else {
+    delete flaggedQuestions[currentQuestionIndex];
+  }
+  updateGridStatus();
+  saveStateToLocal();
+}
+
+function nextQuestion() {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    renderQuestion(currentQuestionIndex);
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion(currentQuestionIndex);
+  }
+}
+
+// 5. UPDATE UI STATUS
+function updateGridStatus() {
+  questions.forEach((_, i) => {
+    const btn = document.getElementById(`grid-btn-${i}`);
+    if (btn) {
+      btn.classList.remove('answered', 'flagged');
+      if (flaggedQuestions[i]) {
+        btn.classList.add('flagged');
+      } else if (userAnswers[i]) {
+        btn.classList.add('answered');
+      }
+    }
+  });
+}
+
+// Highlight the current question
+function updateGridHighlight() {
+  questions.forEach((_, i) => {
+    const btn = document.getElementById(`grid-btn-${i}`);
+    if (btn) {
+      if(i === currentQuestionIndex) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    }
+  });
+}
+
+// 6. TIMER LOGIC
+function updateTimer() {
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    alert("Waktu habis! Jawaban Anda otomatis dikirimkan.");
+    forceSubmit();
+    return;
+  }
+  
+  timeLeft--;
+  if(timeLeft % 5 === 0) saveStateToLocal();
+
+  const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+  const s = (timeLeft % 60).toString().padStart(2, '0');
+  document.getElementById('timer-display').innerText = `${m}:${s}`;
+  
+  const timerBox = document.getElementById('timer-container');
+  if (timeLeft < 300) { 
+    if(!timerBox.style.animation) {
+        timerBox.style.animation = "pulseTimer 2s infinite";
+    }
+  } else {
+    timerBox.style.animation = "";
+  }
+}
+
+// 7. REVIEW & SUBMIT KE SUPABASE
+function showReview() {
+  const total = questions.length;
+  const answered = Object.keys(userAnswers).length;
+  const flagged = Object.keys(flaggedQuestions).length;
+  const unanswered = total - answered;
+
+  document.getElementById('rev-total').innerText = total;
+  document.getElementById('rev-answered').innerText = answered;
+  document.getElementById('rev-unanswered').innerText = unanswered;
+  document.getElementById('rev-flagged').innerText = flagged;
+
+  document.getElementById('exam-screen').classList.add('hidden');
+  document.getElementById('review-screen').classList.remove('hidden');
+}
+
+function hideReview() {
+  document.getElementById('review-screen').classList.add('hidden');
+  document.getElementById('exam-screen').classList.remove('hidden');
+}
+
+function forceSubmit() {
+  document.getElementById('exam-screen').classList.add('hidden');
+  document.getElementById('review-screen').classList.add('hidden');
+  submitData();
+}
+
+function submitData() {
+  isExamRunning = false;
+  clearInterval(timerInterval);
+  
+  const btnSubmit = document.getElementById('btn-final-submit');
+  btnSubmit.innerText = "Mengirim...";
+  btnSubmit.disabled = true;
+
+  let skor = 0;
+  let detailJawaban = [];
+  questions.forEach((q, i) => {
+    if (userAnswers[i] === q.answer) {
+        skor++;
+        detailJawaban.push(1);
+    } else {
+        detailJawaban.push(0);
+    }
+  });
+
+  const nilaiAkhir = parseFloat(((skor / questions.length) * 100).toFixed(2));
+  const statusKecurangan = cheatLogs.length > 0 ? cheatLogs.join(", ") : "Aman";
+  
+  // Format data payload yang disimpan di tabel DataNilai
+  const payload = {
+    "Waktu Submit": new Date().toISOString(),
+    "Nama Siswa": studentData.nama,
+    "Kelas": studentData.kelas,
+    "Skor Benar": skor,
+    "Total Soal": questions.length,
+    "Nilai Akhir (100)": nilaiAkhir,
+    "Status Kecurangan": statusKecurangan,
+    "Detail Jawaban": JSON.stringify(detailJawaban)
+  };
+
+  // Mengirim hasil ujian langsung ke Supabase
+  fetch(`${SUPABASE_URL}/rest/v1/DataNilai`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(async response => {
+    if(!response.ok) {
+        // Fallback jika Admin belum membuat kolom "Detail Jawaban" di tabel DataNilai Supabase
+        if (response.status === 400) {
+            delete payload["Detail Jawaban"];
+            const retry = await fetch(`${SUPABASE_URL}/rest/v1/DataNilai`, {
+                method: 'POST',
+                headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+                body: JSON.stringify(payload)
+            });
+            if (!retry.ok) throw new Error("Gagal mengirim data.");
+            return retry;
+        }
+        throw new Error("Gagal mengirim data ke server Supabase.");
+    }
+    return response;
+  })
+  .then(() => {
+    localStorage.removeItem('cbt_exam_state');
+    document.getElementById('review-screen').classList.add('hidden');
+    document.getElementById('success-screen').classList.remove('hidden');
+    
+    if (document.exitFullscreen) { document.exitFullscreen(); }
+  })
+  .catch(err => {
+      alert("Terjadi gangguan koneksi. Jawaban Anda tetap aman di memori, silakan coba tekan kirim sekali lagi.");
+      btnSubmit.innerText = "KIRIM SEKARANG";
+      btnSubmit.disabled = false;
+  });
+}
+
+// 8. ANTI CHEAT SYSTEM
+function setupCheatDetection() {
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden && isExamRunning) {
+      handleCheatViolation("Pindah Tab / Minimize Aplikasi");
+    }
+  });
+
+  window.addEventListener("blur", function() {
+    if (isExamRunning && !document.hidden) {
+      handleCheatViolation("Layar Kehilangan Fokus (Indikasi Floating App / Buka Notif)");
+    }
+  });
+
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', function() {
+    if(isExamRunning) {
+       let widthChange = Math.abs(window.innerWidth - lastWidth);
+       if (widthChange > 50) {
+           handleCheatViolation("Terdeteksi Layar Terbagi (Split Screen)");
+       }
+       lastWidth = window.innerWidth;
+    }
+  });
+}
+
+// FUNGSI KHUSUS TOOLBAR MATEMATIKA (INSERT SYMBOL)
+function setActiveMathInput(inputId) {
+  activeMathInputId = inputId;
+}
+
+function insertMathSymbol(symbol) {
+  const inputEl = document.getElementById(activeMathInputId);
+  if (!inputEl) return;
+
+  const startPos = inputEl.selectionStart;
+  const endPos = inputEl.selectionEnd;
+  const originalText = inputEl.value;
+
+  inputEl.value = originalText.substring(0, startPos) + symbol + originalText.substring(endPos, originalText.length);
+  inputEl.focus();
+
+  // Kembalikan kursor tepat setelah simbol dimasukkan
+  const newCursorPos = startPos + symbol.length;
+  inputEl.setSelectionRange(newCursorPos, newCursorPos);
+}
+
+function handleCheatViolation(type) {
+  const time = new Date().toLocaleTimeString();
+  cheatLogs.push(`${type} pada ${time}`);
+  cheatStrikes++;
+
+  showCheatWarning(type, cheatStrikes);
+}
+
+function showCheatWarning(reason, strikes) {
+  const overlay = document.getElementById('cheat-overlay');
+  document.getElementById('cheat-reason').innerText = `Terdeteksi: ${reason}`;
+  document.getElementById('cheat-strike-text').innerText = `PERINGATAN ${strikes} DARI ${MAX_STRIKES}. Jika mencapai batas, ujian OTOMATIS BERAKHIR!`;
+
+  overlay.classList.remove('hidden');
+  overlay.classList.add('flex');
+  
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }, 5000);
+}
+
+// 9. UTILITIES
+function resizeFont(size) {
+  const area = document.getElementById('question-area');
+  if(size === 'small') area.style.fontSize = '1rem';
+  if(size === 'medium') area.style.fontSize = '1.1rem';
+  if(size === 'large') area.style.fontSize = '1.35rem';
+}
+
+
+// ===========================================================================
+// SISTEM ADMIN CBT (FUNGSI BARU DIINTEGRASIKAN)
+// ===========================================================================
+
+function showAdminLogin() {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('super-admin-login-screen').classList.add('hidden');
+  document.getElementById('admin-login-screen').classList.remove('hidden');
+  document.getElementById('admin-login-error').classList.add('hidden');
+}
+
+function hideAdminLogin() {
+  document.getElementById('admin-login-screen').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+}
+
+function showSuperAdminLogin() {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('admin-login-screen').classList.add('hidden');
+  document.getElementById('super-admin-login-screen').classList.remove('hidden');
+  document.getElementById('super-admin-login-error').classList.add('hidden');
+}
+
+function hideSuperAdminLogin() {
+  document.getElementById('super-admin-login-screen').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+}
+
+// LOGIN ADMIN BIASA (Mengecek kredensial dinamis langsung di Supabase)
+function attemptAdminLogin() {
+  const user = document.getElementById('admin-username').value.trim();
+  const pass = document.getElementById('admin-password').value.trim();
+  const errorDiv = document.getElementById('admin-login-error');
+  const btnLogin = document.querySelector('#admin-login-screen .btn-primary');
+
+  if(!user || !pass) {
+    errorDiv.innerText = "⚠️ Username dan Password wajib diisi!";
+    errorDiv.classList.remove('hidden');
+    return;
+  }
+
+  btnLogin.innerText = "Memverifikasi...";
+  btnLogin.disabled = true;
+
+  // Menarik kredensial valid langsung dari tabel AdminAuth Supabase
+  fetch(`${SUPABASE_URL}/rest/v1/AdminAuth?id=eq.1&select=*`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => {
+    if(!res.ok) throw new Error();
+    return res.json();
+  })
+  .then(data => {
+    // Kredensial Default Fallback jika database AdminAuth kosong atau belum terisi
+    let dbUser = "admin";
+    let dbPass = "adminspentig";
+
+    if(data && data.length > 0) {
+      dbUser = data[0].Username;
+      dbPass = data[0].Password;
+    }
+
+    if(user === dbUser && pass === dbPass) {
+      currentActiveRole = "admin";
+      document.getElementById('admin-login-screen').classList.add('hidden');
+      document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+      
+      // UI Penyesuaian Role
+      document.getElementById('dashboard-title-text').innerText = "Dashboard Administrator";
+      document.getElementById('tab-btn-manajemen-admin').style.display = "none"; // Sembunyikan tombol reset password
+
+      // Default Tab
+      switchAdminTab('tab-soal');
+      loadAdminBankSoal();
+      loadAdminResults();
+    } else {
+      errorDiv.innerText = "⚠️ Username atau password Admin salah!";
+      errorDiv.classList.remove('hidden');
+    }
+  })
+  .catch(() => {
+    // Fallback Darurat Offline jika koneksi internet terputus ke Supabase
+    const localUser = localStorage.getItem('cbt_admin_user_credential') || "admin";
+    const localPass = localStorage.getItem('cbt_admin_pass_credential') || "adminspentig";
+
+    if(user === localUser && pass === localPass) {
+      currentActiveRole = "admin";
+      document.getElementById('admin-login-screen').classList.add('hidden');
+      document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+      document.getElementById('dashboard-title-text').innerText = "Dashboard Administrator (Offline)";
+      document.getElementById('tab-btn-manajemen-admin').style.display = "none";
+      switchAdminTab('tab-soal');
+    } else {
+      errorDiv.innerText = "⚠️ Gagal terhubung ke database Supabase atau sandi salah.";
+      errorDiv.classList.remove('hidden');
+    }
+  })
+  .finally(() => {
+    btnLogin.innerText = "MASUK ADMIN";
+    btnLogin.disabled = false;
+  });
+}
+
+// LOGIN SUPER ADMIN (Menggunakan Kunci Master)
+function attemptSuperAdminLogin() {
+  const user = document.getElementById('super-admin-username').value.trim();
+  const pass = document.getElementById('super-admin-password').value.trim();
+  const errorDiv = document.getElementById('super-admin-login-error');
+
+  // Cek Kredensial Super Admin
+  if(user === SUPER_ADMIN_USER && pass === SUPER_ADMIN_PASS) {
+    currentActiveRole = "superadmin";
+    document.getElementById('super-admin-login-screen').classList.add('hidden');
+    document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+    
+    // UI Penyesuaian Role
+    document.getElementById('dashboard-title-text').innerText = "Dashboard SUPER Administrator";
+    document.getElementById('tab-btn-manajemen-admin').style.display = "inline-block"; // Tampilkan tab reset
+
+    // Default Tab
+    switchAdminTab('tab-soal');
+    loadAdminBankSoal();
+    loadAdminResults();
+  } else {
+    errorDiv.innerText = "⚠️ Username atau password Super Admin salah!";
+    errorDiv.classList.remove('hidden');
+  }
+}
+
+function logoutAdmin() {
+  currentActiveRole = "";
+  document.getElementById('admin-dashboard-screen').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('admin-username').value = "";
+  document.getElementById('admin-password').value = "";
+  document.getElementById('super-admin-username').value = "";
+  document.getElementById('super-admin-password').value = "";
+}
+
+function switchAdminTab(tabId) {
+  const tabs = document.querySelectorAll('.admin-tab-content');
+  tabs.forEach(tab => tab.classList.add('hidden'));
+  
+  const buttons = document.querySelectorAll('.admin-tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  document.getElementById(`admin-${tabId}`).classList.remove('hidden');
+  
+  // Menemukan tombol yang sesuai untuk disorot
+  if (event && event.target && event.target.classList.contains('admin-tab-btn')) {
+    event.target.classList.add('active');
+  } else {
+    // Fallback jika dipanggil langsung lewat kode JS
+    const btns = document.querySelectorAll('.admin-tab-btn');
+    if (tabId === 'tab-soal') btns[0].classList.add('active');
+    else if (tabId === 'tab-pengaturan') btns[1].classList.add('active');
+    else if (tabId === 'tab-hasil') btns[2].classList.add('active');
+    else if (tabId === 'tab-analisis') btns[3].classList.add('active');
+    else if (tabId === 'tab-manajemen-admin') btns[4].classList.add('active');
+  }
+  
+  if (tabId === 'tab-soal') {
+    loadAdminBankSoal();
+  } else if (tabId === 'tab-hasil') {
+    loadAdminResults();
+  } else if (tabId === 'tab-analisis') {
+    loadAdminAnalisis();
+  } else if (tabId === 'tab-pengaturan') {
+    // Sinkronkan form UI admin dengan variable
+    document.getElementById('admin-setting-jenis-ujian').value = adminJenisUjian;
+    document.getElementById('admin-setting-tahun-pelajaran').value = adminTahunPelajaran;
+    document.getElementById('admin-setting-nama-sekolah').value = adminNamaSekolah;
+    document.getElementById('admin-setting-alamat-sekolah').value = adminAlamatSekolah;
+    document.getElementById('admin-setting-logo-url').value = adminLogo;
+    document.getElementById('admin-setting-logo-preview').src = adminLogo;
+    document.getElementById('admin-setting-kepsek-nama').value = adminKepsekName;
+    document.getElementById('admin-setting-kepsek-nip').value = adminKepsekNip;
+    document.getElementById('admin-setting-token').value = adminToken;
+    document.getElementById('admin-setting-tanggal').value = adminTanggalUjian;
+    document.getElementById('admin-setting-durasi').value = EXAM_DURATION_MINUTES;
+  } else if (tabId === 'tab-manajemen-admin') {
+    // Mengambil username admin yang tersimpan saat ini dari Supabase secara dinamis
+    const currentAdminUserSpan = document.getElementById('current-admin-user-display');
+    currentAdminUserSpan.innerText = "Memuat data...";
+
+    fetch(`${SUPABASE_URL}/rest/v1/AdminAuth?id=eq.1&select=*`, {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data && data.length > 0) {
+        currentAdminUserSpan.innerText = data[0].Username;
+        document.getElementById('admin-new-username').value = data[0].Username;
+        document.getElementById('admin-new-password').value = data[0].Password;
+      } else {
+        currentAdminUserSpan.innerText = "admin";
+      }
+    })
+    .catch(() => {
+      currentAdminUserSpan.innerText = localStorage.getItem('cbt_admin_user_credential') || "admin";
+    });
+  }
+}
+
+// AMBIL SOAL UNTUK PANEL ADMIN (CRUD)
+let rawAdminQuestions = [];
+function loadAdminBankSoal() {
+  const tbody = document.getElementById('admin-soal-tbody');
+  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Mengambil data bank soal...</td></tr>';
+
+  fetch(`${SUPABASE_URL}/rest/v1/BankSoal?select=*&order=No.asc`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    rawAdminQuestions = data;
+    tbody.innerHTML = '';
+    if(data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Belum ada soal di database. Silakan klik Tambah Soal!</td></tr>';
+      return;
+    }
+    
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="font-weight: 700;">${row["No"]}</td>
+        <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${row["Soal"] || ''}</td>
+        <td>
+          <span style="font-size:0.85rem; display:block;"><strong>A:</strong> ${row["Opsi A"] || ''}</span>
+          <span style="font-size:0.85rem; display:block;"><strong>B:</strong> ${row["Opsi B"] || ''}</span>
+        </td>
+        <td style="text-align: center;"><span style="background: var(--primary-light); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-weight:700;">${row["Kunci Jawaban"] || ''}</span></td>
+        <td style="text-align: center; white-space: nowrap;">
+          <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 0.8rem; margin-right: 5px;" onclick="openEditSoalModal(${row["No"]})">Edit</button>
+          <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8rem;" onclick="hapusSoalDariDatabase(${row["No"]})">Hapus</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(err => {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color: var(--danger);">Gagal mengambil soal dari Supabase!</td></tr>';
+  });
+}
+
+// AMBIL HASIL UJIAN SISWA
+function loadAdminResults() {
+  const tbody = document.getElementById('admin-hasil-tbody');
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Mengambil hasil ujian...</td></tr>';
+
+  fetch(`${SUPABASE_URL}/rest/v1/DataNilai?select=*`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    // Urutkan nilai siswa dari waktu submit terbaru
+    data.sort((a, b) => new Date(b["Waktu Submit"]) - new Date(a["Waktu Submit"]));
+    fetchedResults = data;
+    tbody.innerHTML = '';
+    if(data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Belum ada siswa yang mengirim hasil ujian.</td></tr>';
+      return;
+    }
+
+    data.forEach(row => {
+      const date = row["Waktu Submit"] ? new Date(row["Waktu Submit"]).toLocaleString('id-ID') : '-';
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${date}</td>
+        <td style="font-weight: 600;">${row["Nama Siswa"] || ''}</td>
+        <td>${row["Kelas"] || ''}</td>
+        <td>${row["Skor Benar"] || 0}</td>
+        <td>${row["Total Soal"] || 0}</td>
+        <td style="font-weight: 700; color: var(--primary);">${row["Nilai Akhir (100)"] || 0}</td>
+        <td style="font-size: 0.85rem; color: ${row["Status Kecurangan"] === "Aman" ? 'var(--success)' : 'var(--danger)'};">${row["Status Kecurangan"] || 'Aman'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(err => {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color: var(--danger);">Gagal mengambil data dari Supabase!</td></tr>';
+  });
+}
+
+// AMBIL ANALISIS SOAL
+function loadAdminAnalisis() {
+  const tbody = document.getElementById('admin-analisis-tbody');
+  
+  if (rawAdminQuestions.length === 0 || fetchedResults.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Data soal atau hasil ujian belum cukup untuk dianalisis.</td></tr>';
+    return;
+  }
+
+  const resultsWithDetails = fetchedResults.filter(r => r["Detail Jawaban"]);
+  
+  if (resultsWithDetails.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Belum ada siswa yang terekam menggunakan versi aplikasi terbaru ini.</td></tr>';
+    return;
+  }
+
+  const totalStudents = resultsWithDetails.length;
+  tbody.innerHTML = '';
+
+  rawAdminQuestions.forEach((q, idx) => {
+    let benar = 0;
+    let salah = 0;
+
+    resultsWithDetails.forEach(res => {
+      try {
+        const detailArray = JSON.parse(res["Detail Jawaban"]);
+        if (detailArray[idx] === 1) benar++;
+        else salah++;
+      } catch(e) { }
+    });
+
+    const pct = totalStudents > 0 ? ((benar / totalStudents) * 100).toFixed(1) : 0;
+    let kategori = ""; let katColor = "";
+    if (pct >= 70) { kategori = "Mudah"; katColor = "var(--success)"; }
+    else if (pct >= 30) { kategori = "Sedang"; katColor = "var(--warning)"; }
+    else { kategori = "Sulit"; katColor = "var(--danger)"; }
+
+    const cuplikanText = (q.Soal || "").substring(0, 60) + "...";
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="text-align: center; font-weight: bold;">${idx + 1}</td>
+      <td style="font-size: 0.9rem;">${cuplikanText}</td>
+      <td style="text-align: center; color: var(--success); font-weight: bold;">${benar}</td>
+      <td style="text-align: center; color: var(--danger); font-weight: bold;">${salah}</td>
+      <td style="text-align: center; font-weight: bold;">${pct}%</td>
+      <td style="text-align: center;"><span style="background: ${katColor}20; color: ${katColor}; padding: 4px 8px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;">${kategori}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// CETAK PDF & EXCEL HASIL UJIAN (Peningkatan fungsionalitas dan format)
+function exportHasilExcel() {
+  if (fetchedResults.length === 0) {
+    alert("Tidak ada data untuk diekspor!");
+    return;
+  }
+  
+  // Menggunakan tag HTML ke dalam format XLS agar bisa membuat Kop tabel dan Kolom Tanda Tangan yang rapi di Excel
+  let html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+      <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+      <x:Name>Rekap Nilai</x:Name>
+      <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+      </x:ExcelWorksheet></x:Worksheets></x:ExcelWorkbook></xml><![endif]-->
+      <meta charset="utf-8">
+      <style>
+        table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 11pt; }
+        th, td { border: 1px solid black; padding: 5px; text-align: left; }
+        th { background-color: #f2f2f2; text-align: center; font-weight: bold; }
+        .no-border { border: none !important; }
+        .center { text-align: center; }
+        .bold { font-weight: bold; }
+      </style>
+    </head>
+    <body>
+      <table>
+        <tr>
+          <td rowspan="4" class="no-border center" style="vertical-align: middle; width: 100px;">
+            <img src="${adminLogo}" style="max-width: 80px; max-height: 80px;" alt="Logo">
+          </td>
+          <td colspan="7" class="no-border center bold" style="font-size: 14pt;">Pemerintah Kabupaten Rote Ndao</td>
+        </tr>
+        <tr><td colspan="7" class="no-border center bold" style="font-size: 14pt;">DINAS PENDIDIKAN</td></tr>
+        <tr><td colspan="7" class="no-border center bold" style="font-size: 16pt;">${adminNamaSekolah}</td></tr>
+        <tr><td colspan="7" class="no-border center">${adminAlamatSekolah}</td></tr>
+        <tr><td colspan="8" class="no-border"></td></tr>
+        <tr><td colspan="8" class="no-border center bold" style="font-size: 13pt; text-decoration: underline;">REKAPITULASI HASIL ${adminJenisUjian.toUpperCase()}</td></tr>
+        <tr><td colspan="8" class="no-border"></td></tr>
+        <tr>
+          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="6" class="no-border">Matematika (Kelas VIII)</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="no-border bold">Tanggal Cetak:</td><td colspan="6" class="no-border">${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+        </tr>
+        <tr><td colspan="8" class="no-border"></td></tr>
+        <tr>
+          <th>No</th><th>Waktu Submit</th><th>Nama Siswa</th><th>Kelas</th>
+          <th>Skor Benar</th><th>Total Soal</th><th>Nilai Akhir (100)</th><th>Status Kecurangan</th>
+        </tr>`;
+
+  fetchedResults.forEach((row, idx) => {
+    const time = row["Waktu Submit"] ? new Date(row["Waktu Submit"]).toLocaleString('id-ID') : '-';
+    html += `<tr>
+      <td class="center">${idx + 1}</td>
+      <td>${time}</td>
+      <td>${row["Nama Siswa"] || ''}</td>
+      <td class="center">${row["Kelas"] || ''}</td>
+      <td class="center">${row["Skor Benar"] || 0}</td>
+      <td class="center">${row["Total Soal"] || 0}</td>
+      <td class="center bold">${row["Nilai Akhir (100)"] || 0}</td>
+      <td>${row["Status Kecurangan"] || 'Aman'}</td>
+    </tr>`;
+  });
+
+  html += `
+        <tr><td colspan="8" class="no-border"></td></tr>
+        <tr><td colspan="8" class="no-border"></td></tr>
+        <tr>
+          <td colspan="5" class="no-border"></td>
+          <td colspan="3" class="no-border center">Lobalain, ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="no-border"></td>
+          <td colspan="3" class="no-border center">Kepala UPTD SMP Negeri 3 Lobalain,</td>
+        </tr>
+        <tr><td colspan="8" class="no-border" style="height: 70px;"></td></tr>
+        <tr>
+          <td colspan="5" class="no-border"></td>
+          <td colspan="3" class="no-border center bold" style="text-decoration: underline;">${adminKepsekName}</td>
+        </tr>
+        <tr>
+          <td colspan="5" class="no-border"></td>
+          <td colspan="3" class="no-border center">NIP. ${adminKepsekNip}</td>
+        </tr>
+      </table>
+    </body></html>`;
+
+  const blob = new Blob([html], { type: 'application/vnd.ms-excel;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  
+  const cleanFileName = adminJenisUjian.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  link.setAttribute("download", `rekap_nilai_cbt_${cleanFileName}.xls`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function cetakHasilPDF() {
+  if (fetchedResults.length === 0) {
+    alert("Tidak ada data hasil ujian untuk dicetak!");
+    return;
+  }
+
+  const printWindow = window.open('', '_blank');
+  
+  let rowsHtml = '';
+  fetchedResults.forEach((row, idx) => {
+    const time = row["Waktu Submit"] ? new Date(row["Waktu Submit"]).toLocaleString('id-ID') : '-';
+    rowsHtml += `
+      <tr>
+        <td style="text-align: center;">${idx + 1}</td>
+        <td>${time}</td>
+        <td style="font-weight: 500;">${row["Nama Siswa"] || ''}</td>
+        <td style="text-align: center;">${row["Kelas"] || ''}</td>
+        <td style="text-align: center;">${row["Skor Benar"] || 0} / ${row["Total Soal"] || 0}</td>
+        <td style="text-align: center; font-weight: bold; color: #1e3a8a;">${row["Nilai Akhir (100)"] || 0}</td>
+        <td style="color: ${row["Status Kecurangan"] === "Aman" ? '#059669' : '#dc2626'}; font-weight: 500;">${row["Status Kecurangan"] || 'Aman'}</td>
+      </tr>
+    `;
+  });
+
+  printWindow.document.write(`
+    <html>
+    <head>
+      <title>Laporan Hasil Ujian - ${adminJenisUjian}</title>
+      <style>
+        body { 
+          font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+          padding: 30px; 
+          color: #1e293b; 
+          line-height: 1.5;
+        }
+        .header-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-bottom: 3px double #000;
+          padding-bottom: 15px;
+          margin-bottom: 25px;
+        }
+        .header-logo {
+          width: 70px;
+          height: auto;
+          margin-right: 20px;
+        }
+        .header-text {
+          text-align: center;
+        }
+        .header-text h2 {
+          font-size: 16px;
+          margin: 0;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+        .header-text h1 {
+          font-size: 20px;
+          margin: 3px 0;
+          font-weight: 800;
+          color: #000;
+          text-transform: uppercase;
+        }
+        .header-text p {
+          font-size: 11px;
+          margin: 2px 0 0 0;
+          color: #475569;
+        }
+        .doc-title {
+          text-align: center;
+          font-size: 15px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+          color: #1e3a8a;
+          text-decoration: underline;
+        }
+        .meta-info {
+          font-size: 12px;
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+        }
+        table { 
+          width: 100%; 
+          border-collapse: collapse; 
+          margin-top: 10px; 
+          font-size: 11px; 
+        }
+        th, td { 
+          border: 1px solid #94a3b8; 
+          padding: 8px 10px; 
+          text-align: left; 
+        }
+        th { 
+          background-color: #f1f5f9; 
+          font-weight: 700;
+          text-transform: uppercase;
+          text-align: center;
+        }
+        tr:nth-child(even) {
+          background-color: #f8fafc;
+        }
+        .signature-container { 
+          margin-top: 40px; 
+          display: flex;
+          justify-content: flex-end;
+          font-size: 12px; 
+        }
+        .signature-box {
+          text-align: center;
+          width: 250px;
+        }
+        .signature-space {
+          height: 75px;
+        }
+        @media print {
+          body { padding: 0; }
+          button { display: none; }
+        }
+      </style>
+    </head>
+    <body onload="window.print()">
+      <div class="header-container">
+        <img class="header-logo" src="${adminLogo}" alt="Logo Sekolah">
+        <div class="header-text">
+          <h2>Pemerintah Kabupaten Rote Ndao</h2>
+          <h2 style="font-size: 15px; margin: 3px 0; font-weight: bold; color: #000;">DINAS PENDIDIKAN</h2>
+          <h1>${adminNamaSekolah}</h1>
+          <p>${adminAlamatSekolah}</p>
+        </div>
+      </div>
+      
+      <div class="doc-title">REKAPITULASI HASIL ${adminJenisUjian.toUpperCase()}</div>
+      
+      <div class="meta-info">
+        <div><strong>Mata Pelajaran:</strong> Matematika (Kelas VIII)</div>
+        <div><strong>Tanggal Cetak:</strong> ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40px;">No</th>
+            <th style="width: 140px;">Waktu Kirim</th>
+            <th>Nama Lengkap Siswa</th>
+            <th style="width: 80px;">Kelas</th>
+            <th style="width: 90px;">Skor Benar</th>
+            <th style="width: 90px;">Nilai (100)</th>
+            <th>Catatan Ujian / Cheat</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+
+      <div class="signature-container">
+        <div class="signature-box">
+          <p>Lobalain, ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p>Kepala UPTD SMP Negeri 3 Lobalain,</p>
+          <div class="signature-space"></div>
+          <p style="font-weight: bold; text-decoration: underline;">${adminKepsekName}</p>
+          <p>NIP. ${adminKepsekNip}</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+function exportAnalisisExcel() {
+  const resultsWithDetails = fetchedResults.filter(r => r["Detail Jawaban"]);
+  if (rawAdminQuestions.length === 0 || resultsWithDetails.length === 0) {
+    alert("Data belum lengkap atau belum ada detail jawaban siswa untuk diekspor!");
+    return;
+  }
+  const totalStudents = resultsWithDetails.length;
+
+  let html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+      <meta charset="utf-8">
+      <style>
+        table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 11pt; }
+        th, td { border: 1px solid black; padding: 5px; text-align: left; }
+        th { background-color: #f2f2f2; text-align: center; font-weight: bold; }
+        .no-border { border: none !important; }
+        .center { text-align: center; }
+        .bold { font-weight: bold; }
+      </style>
+    </head>
+    <body>
+      <table>
+        <tr>
+          <td rowspan="4" class="no-border center" style="vertical-align: middle; width: 100px;">
+            <img src="${adminLogo}" style="max-width: 80px; max-height: 80px;" alt="Logo">
+          </td>
+          <td colspan="5" class="no-border center bold" style="font-size: 14pt;">Pemerintah Kabupaten Rote Ndao</td>
+        </tr>
+        <tr><td colspan="5" class="no-border center bold" style="font-size: 14pt;">DINAS PENDIDIKAN</td></tr>
+        <tr><td colspan="5" class="no-border center bold" style="font-size: 16pt;">${adminNamaSekolah}</td></tr>
+        <tr><td colspan="5" class="no-border center">${adminAlamatSekolah}</td></tr>
+        <tr><td colspan="6" class="no-border"></td></tr>
+        <tr><td colspan="6" class="no-border center bold" style="font-size: 13pt; text-decoration: underline;">ANALISIS TINGKAT KESUKARAN SOAL ${adminJenisUjian.toUpperCase()}</td></tr>
+        <tr><td colspan="6" class="no-border"></td></tr>
+        <tr>
+          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="4" class="no-border">Matematika (Kelas VIII)</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="no-border bold">Tanggal Cetak:</td><td colspan="4" class="no-border">${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+        </tr>
+        <tr><td colspan="6" class="no-border"></td></tr>
+        <tr>
+          <th>No</th><th>Cuplikan Teks Soal</th><th>Jawab Benar</th><th>Jawab Salah</th><th>Persentase (%)</th><th>Kategori</th>
+        </tr>`;
+
+  rawAdminQuestions.forEach((q, idx) => {
+    let benar = 0; let salah = 0;
+    resultsWithDetails.forEach(res => {
+      try { const detailArray = JSON.parse(res["Detail Jawaban"]); if (detailArray[idx] === 1) benar++; else salah++; } catch(e) { }
+    });
+    const pct = totalStudents > 0 ? ((benar / totalStudents) * 100).toFixed(1) : 0;
+    let kategori = "";
+    if (pct >= 70) kategori = "Mudah"; else if (pct >= 30) kategori = "Sedang"; else kategori = "Sulit";
+    const cuplikanText = (q.Soal || "").substring(0, 100) + "...";
+
+    html += `<tr>
+      <td class="center">${idx + 1}</td>
+      <td>${cuplikanText}</td>
+      <td class="center">${benar}</td>
+      <td class="center">${salah}</td>
+      <td class="center bold">${pct}%</td>
+      <td class="center">${kategori}</td>
+    </tr>`;
+  });
+
+  html += `
+        <tr><td colspan="6" class="no-border"></td></tr>
+        <tr><td colspan="6" class="no-border"></td></tr>
+        <tr>
+          <td colspan="3" class="no-border"></td>
+          <td colspan="3" class="no-border center">Lobalain, ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="no-border"></td>
+          <td colspan="3" class="no-border center">Kepala UPTD SMP Negeri 3 Lobalain,</td>
+        </tr>
+        <tr><td colspan="6" class="no-border" style="height: 70px;"></td></tr>
+        <tr>
+          <td colspan="3" class="no-border"></td>
+          <td colspan="3" class="no-border center bold" style="text-decoration: underline;">${adminKepsekName}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="no-border"></td>
+          <td colspan="3" class="no-border center">NIP. ${adminKepsekNip}</td>
+        </tr>
+      </table>
+    </body></html>`;
+
+  const blob = new Blob([html], { type: 'application/vnd.ms-excel;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  
+  const cleanFileName = adminJenisUjian.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  link.setAttribute("download", `analisis_soal_cbt_${cleanFileName}.xls`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function cetakAnalisisPDF() {
+  const resultsWithDetails = fetchedResults.filter(r => r["Detail Jawaban"]);
+  if (rawAdminQuestions.length === 0 || resultsWithDetails.length === 0) {
+    alert("Data belum lengkap atau belum ada detail jawaban siswa untuk dicetak!");
+    return;
+  }
+  const totalStudents = resultsWithDetails.length;
+
+  const printWindow = window.open('', '_blank');
+  
+  let rowsHtml = '';
+  rawAdminQuestions.forEach((q, idx) => {
+    let benar = 0; let salah = 0;
+    resultsWithDetails.forEach(res => {
+      try { const detailArray = JSON.parse(res["Detail Jawaban"]); if (detailArray[idx] === 1) benar++; else salah++; } catch(e) { }
+    });
+    const pct = totalStudents > 0 ? ((benar / totalStudents) * 100).toFixed(1) : 0;
+    let kategori = ""; let katColor = "";
+    if (pct >= 70) { kategori = "Mudah"; katColor = "#059669"; }
+    else if (pct >= 30) { kategori = "Sedang"; katColor = "#d97706"; }
+    else { kategori = "Sulit"; katColor = "#dc2626"; }
+    const cuplikanText = (q.Soal || "").substring(0, 80) + "...";
+
+    rowsHtml += `
+      <tr>
+        <td style="text-align: center;">${idx + 1}</td>
+        <td>${cuplikanText}</td>
+        <td style="text-align: center;">${benar}</td>
+        <td style="text-align: center;">${salah}</td>
+        <td style="text-align: center; font-weight: bold;">${pct}%</td>
+        <td style="text-align: center; color: ${katColor}; font-weight: bold;">${kategori}</td>
+      </tr>
+    `;
+  });
+
+  printWindow.document.write(`
+    <html>
+    <head>
+      <title>Laporan Analisis Soal - ${adminJenisUjian}</title>
+      <style>
+        body { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 30px; color: #1e293b; line-height: 1.5; }
+        .header-container { display: flex; align-items: center; justify-content: center; border-bottom: 3px double #000; padding-bottom: 15px; margin-bottom: 25px; }
+        .header-logo { width: 70px; height: auto; margin-right: 20px; }
+        .header-text { text-align: center; }
+        .header-text h2 { font-size: 16px; margin: 0; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+        .header-text h1 { font-size: 20px; margin: 3px 0; font-weight: 800; color: #000; text-transform: uppercase; }
+        .header-text p { font-size: 11px; margin: 2px 0 0 0; color: #475569; }
+        .doc-title { text-align: center; font-size: 15px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; color: #1e3a8a; text-decoration: underline; }
+        .meta-info { font-size: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 11px; }
+        th, td { border: 1px solid #94a3b8; padding: 8px 10px; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: 700; text-transform: uppercase; text-align: center; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .signature-container { margin-top: 40px; display: flex; justify-content: flex-end; font-size: 12px; }
+        .signature-box { text-align: center; width: 250px; }
+        .signature-space { height: 75px; }
+        @media print { body { padding: 0; } button { display: none; } }
+      </style>
+    </head>
+    <body onload="window.print()">
+      <div class="header-container">
+        <img class="header-logo" src="${adminLogo}" alt="Logo Sekolah">
+        <div class="header-text">
+          <h2>Pemerintah Kabupaten Rote Ndao</h2>
+          <h2 style="font-size: 15px; margin: 3px 0; font-weight: bold; color: #000;">DINAS PENDIDIKAN</h2>
+          <h1>${adminNamaSekolah}</h1>
+          <p>${adminAlamatSekolah}</p>
+        </div>
+      </div>
+      
+      <div class="doc-title">ANALISIS TINGKAT KESUKARAN SOAL ${adminJenisUjian.toUpperCase()}</div>
+      
+      <div class="meta-info">
+        <div><strong>Mata Pelajaran:</strong> Matematika (Kelas VIII)</div>
+        <div><strong>Tanggal Cetak:</strong> ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40px;">No</th>
+            <th>Cuplikan Teks Soal</th>
+            <th style="width: 80px;">Jawab Benar</th>
+            <th style="width: 80px;">Jawab Salah</th>
+            <th style="width: 80px;">Persentase</th>
+            <th style="width: 90px;">Kategori</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+
+      <div class="signature-container">
+        <div class="signature-box">
+          <p>Lobalain, ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p>Kepala UPTD SMP Negeri 3 Lobalain,</p>
+          <div class="signature-space"></div>
+          <p style="font-weight: bold; text-decoration: underline;">${adminKepsekName}</p>
+          <p>NIP. ${adminKepsekNip}</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+// PENGATURAN EXAM SETTINGS
+function simpanPengaturanUjian() {
+  const jenis = document.getElementById('admin-setting-jenis-ujian').value.trim();
+  const tahun = document.getElementById('admin-setting-tahun-pelajaran').value.trim();
+  const namaSekolah = document.getElementById('admin-setting-nama-sekolah').value.trim();
+  const alamatSekolah = document.getElementById('admin-setting-alamat-sekolah').value.trim();
+  const token = document.getElementById('admin-setting-token').value.trim();
+  const logoUrl = document.getElementById('admin-setting-logo-url').value.trim();
+  const kepsekNama = document.getElementById('admin-setting-kepsek-nama').value.trim();
+  const kepsekNip = document.getElementById('admin-setting-kepsek-nip').value.trim();
+  const tgl = document.getElementById('admin-setting-tanggal').value;
+  const durasi = parseInt(document.getElementById('admin-setting-durasi').value);
+
+  if(!jenis) {
+    alert("Jenis / Nama ujian tidak boleh kosong!");
+    return;
+  }
+  if(!token) {
+    alert("Token tidak boleh kosong!");
+    return;
+  }
+
+  adminJenisUjian = jenis;
+  adminTahunPelajaran = tahun || "Tahun Pelajaran 2025/2026";
+  adminNamaSekolah = namaSekolah || "UPTD SMP Negeri 3 Lobalain";
+  adminAlamatSekolah = alamatSekolah || "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
+  adminToken = token;
+  if(logoUrl) adminLogo = logoUrl;
+  adminKepsekName = kepsekNama || "Siprianus P. L. Sula, S.Pd";
+  adminKepsekNip = kepsekNip || "19780512 200501 1 008";
+  adminTanggalUjian = tgl;
+  EXAM_DURATION_MINUTES = durasi;
+  timeLeft = durasi * 60;
+
+  // Simpan permanen di browser lokal agar tidak ter-reset
+  localStorage.setItem('cbt_admin_jenis_ujian', jenis);
+  localStorage.setItem('cbt_admin_tahun_pelajaran', adminTahunPelajaran);
+  localStorage.setItem('cbt_admin_nama_sekolah', adminNamaSekolah);
+  localStorage.setItem('cbt_admin_alamat_sekolah', adminAlamatSekolah);
+  localStorage.setItem('cbt_admin_token', token);
+  localStorage.setItem('cbt_admin_logo', adminLogo);
+  localStorage.setItem('cbt_admin_kepsek_nama', adminKepsekName);
+  localStorage.setItem('cbt_admin_kepsek_nip', adminKepsekNip);
+  localStorage.setItem('cbt_admin_tanggal', tgl);
+  localStorage.setItem('cbt_admin_durasi', durasi.toString());
+
+  // Perbarui teks & logo di layar masuk utama murid secara instan
+  document.getElementById('display-jenis-ujian').innerText = jenis;
+  document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
+  document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
+  document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
+  document.getElementById('display-logo').src = adminLogo;
+  document.getElementById('display-logo-admin').src = adminLogo;
+
+  const successAlert = document.getElementById('settings-success');
+  successAlert.classList.remove('hidden');
+  setTimeout(() => successAlert.classList.add('hidden'), 3000);
+}
+
+// SIMPAN KREDENSIAL LOGIN ADMIN (Mengunggah dan menimpa baris kredensial dinamis di Supabase)
+function simpanKredensialAdmin() {
+  const newUser = document.getElementById('admin-new-username').value.trim();
+  const newPass = document.getElementById('admin-new-password').value.trim();
+
+  if(!newUser || !newPass) {
+    alert("Username dan Password Admin tidak boleh kosong!");
+    return;
+  }
+
+  // Unggah perubahan ke Supabase secara langsung ke tabel AdminAuth (id = 1)
+  const payload = {
+    "Username": newUser,
+    "Password": newPass
+  };
+
+  fetch(`${SUPABASE_URL}/rest/v1/AdminAuth?id=eq.1`, {
+    method: 'PATCH',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if(!res.ok) throw new Error("Gagal menyimpan kredensial baru ke database online Supabase!");
+    
+    // Simpan salinan lokal cadangan di localStorage browser sebagai fallback offline
+    localStorage.setItem('cbt_admin_user_credential', newUser);
+    localStorage.setItem('cbt_admin_pass_credential', newPass);
+
+    // Perbarui tampilan informasi saat ini di UI
+    document.getElementById('current-admin-user-display').innerText = newUser;
+    document.getElementById('admin-new-password').value = "";
+
+    const successAlert = document.getElementById('credentials-success');
+    successAlert.classList.remove('hidden');
+    setTimeout(() => successAlert.classList.add('hidden'), 3000);
+  })
+  .catch(err => {
+    alert(err.message);
+  });
+}
+
+function convertSettingLogo(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('admin-setting-logo-url').value = e.target.result;
+    document.getElementById('admin-setting-logo-preview').src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// TAMBAH & EDIT SOAL MANUAL (CRUD)
+function openTambahSoalModal() {
+  document.getElementById('modal-soal-title').innerText = "Tambah Soal Baru";
+  document.getElementById('modal-soal-id').value = "";
+  document.getElementById('modal-soal-no').value = rawAdminQuestions.length + 1;
+  document.getElementById('modal-soal-teks').value = "";
+  document.getElementById('modal-soal-gbr-url').value = "";
+  document.getElementById('modal-soal-opt-a').value = "";
+  document.getElementById('modal-soal-gbr-a').value = "";
+  document.getElementById('modal-soal-opt-b').value = "";
+  document.getElementById('modal-soal-gbr-b').value = "";
+  document.getElementById('modal-soal-opt-c').value = "";
+  document.getElementById('modal-soal-gbr-c').value = "";
+  document.getElementById('modal-soal-opt-d').value = "";
+  document.getElementById('modal-soal-gbr-d').value = "";
+  document.getElementById('modal-soal-kunci').value = "A";
+
+  // Default active input untuk penulisan simbol ke teks soal
+  activeMathInputId = "modal-soal-teks";
+
+  // Sembunyikan preview gambar
+  document.getElementById('preview-soal-gbr').style.display = 'none';
+  document.getElementById('preview-gbr-a').style.display = 'none';
+  document.getElementById('preview-gbr-b').style.display = 'none';
+  document.getElementById('preview-gbr-c').style.display = 'none';
+  document.getElementById('preview-gbr-d').style.display = 'none';
+
+  document.getElementById('admin-soal-modal').classList.remove('hidden');
+  document.getElementById('admin-soal-modal').classList.add('flex');
+  
+  // Membantu browser fokus modal agar scroll container terinisiasi dengan benar
+  document.getElementById('admin-soal-modal').scrollTop = 0;
+}
+
+function openEditSoalModal(no) {
+  const q = rawAdminQuestions.find(x => x.No === no);
+  if(!q) return;
+
+  document.getElementById('modal-soal-title').innerText = `Edit Soal No. ${no}`;
+  document.getElementById('modal-soal-id').value = q.id || q.No; // Supabase Row identifier
+  document.getElementById('modal-soal-no').value = q.No;
+  document.getElementById('modal-soal-teks').value = q.Soal || "";
+  
+  document.getElementById('modal-soal-gbr-url').value = q["URL Gambar Soal"] || "";
+  document.getElementById('modal-soal-opt-a').value = q["Opsi A"] || "";
+  document.getElementById('modal-soal-gbr-a').value = q["Gambar Opsi A"] || "";
+  document.getElementById('modal-soal-opt-b').value = q["Opsi B"] || "";
+  document.getElementById('modal-soal-gbr-b').value = q["Gambar Opsi B"] || "";
+  document.getElementById('modal-soal-opt-c').value = q["Opsi C"] || "";
+  document.getElementById('modal-soal-gbr-c').value = q["Gambar Opsi C"] || "";
+  document.getElementById('modal-soal-opt-d').value = q["Opsi D"] || "";
+  document.getElementById('modal-soal-gbr-d').value = q["Gambar Opsi D"] || "";
+  document.getElementById('modal-soal-kunci').value = q["Kunci Jawaban"] || "A";
+
+  // Default active input
+  activeMathInputId = "modal-soal-teks";
+
+  // Muat preview
+  previewImage('modal-soal-gbr-url', 'preview-soal-gbr');
+  previewImage('modal-soal-gbr-a', 'preview-gbr-a');
+  previewImage('modal-soal-gbr-b', 'preview-gbr-b');
+  previewImage('modal-soal-gbr-c', 'preview-gbr-c');
+  previewImage('modal-soal-gbr-d', 'preview-gbr-d');
+
+  document.getElementById('admin-soal-modal').classList.remove('hidden');
+  document.getElementById('admin-soal-modal').classList.add('flex');
+  
+  // Membantu browser fokus modal agar scroll container terinisiasi dengan benar
+  document.getElementById('admin-soal-modal').scrollTop = 0;
+}
+
+function closeTambahSoalModal() {
+  document.getElementById('admin-soal-modal').classList.add('hidden');
+  document.getElementById('admin-soal-modal').classList.remove('flex');
+}
+
+// CONVERT LOCAL UPLOAD TO BASE64 DIRECTLY
+function convertImageToBase64(event, urlFieldId, imgPreviewId) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById(urlFieldId).value = e.target.result;
+    const img = document.getElementById(imgPreviewId);
+    img.src = e.target.result;
+    img.style.display = 'inline-block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewImage(urlFieldId, imgPreviewId) {
+  const val = document.getElementById(urlFieldId).value.trim();
+  const img = document.getElementById(imgPreviewId);
+  if(val) {
+    img.src = val;
+    img.style.display = 'inline-block';
+  } else {
+    img.style.display = 'none';
+  }
+}
+
+function simpanSoalManual() {
+  const rowId = document.getElementById('modal-soal-id').value;
+  const no = parseInt(document.getElementById('modal-soal-no').value);
+  const teks = document.getElementById('modal-soal-teks').value.trim();
+  
+  const gbrUrl = document.getElementById('modal-soal-gbr-url').value.trim();
+  const optA = document.getElementById('modal-soal-opt-a').value.trim();
+  const gbrA = document.getElementById('modal-soal-gbr-a').value.trim();
+  const optB = document.getElementById('modal-soal-opt-b').value.trim();
+  const gbrB = document.getElementById('modal-soal-gbr-b').value.trim();
+  const optC = document.getElementById('modal-soal-opt-c').value.trim();
+  const gbrC = document.getElementById('modal-soal-gbr-c').value.trim();
+  const optD = document.getElementById('modal-soal-opt-d').value.trim();
+  const gbrD = document.getElementById('modal-soal-gbr-d').value.trim();
+  const kunci = document.getElementById('modal-soal-kunci').value;
+
+  if(!no || !teks) {
+    alert("Nomor soal dan teks soal wajib diisi!");
+    return;
+  }
+
+  const payload = {
+    "No": no,
+    "Soal": teks,
+    "URL Gambar Soal": gbrUrl,
+    "Opsi A": optA,
+    "Gambar Opsi A": gbrA,
+    "Opsi B": optB,
+    "Gambar Opsi B": gbrB,
+    "Opsi C": optC,
+    "Gambar Opsi C": gbrC,
+    "Opsi D": optD,
+    "Gambar Opsi D": gbrD,
+    "Kunci Jawaban": kunci
+  };
+
+  let method = 'POST';
+  let url = `${SUPABASE_URL}/rest/v1/BankSoal`;
+  let headers = {
+    'apikey': SUPABASE_ANON_KEY,
+    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=minimal'
+  };
+
+  // Jika mengedit baris yang sudah ada
+  if (rowId) {
+    method = 'PATCH';
+    url = `${SUPABASE_URL}/rest/v1/BankSoal?No=eq.${no}`;
+  }
+
+  fetch(url, {
+    method: method,
+    headers: headers,
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if(!res.ok) throw new Error("Gagal menyimpan data ke database!");
+    alert("Soal berhasil disimpan!");
+    closeTambahSoalModal();
+    loadAdminBankSoal();
+  })
+  .catch(err => alert(err.message));
+}
+
+function hapusSoalDariDatabase(no) {
+  if(!confirm(`Apakah Anda yakin ingin menghapus Soal No. ${no}?`)) return;
+
+  fetch(`${SUPABASE_URL}/rest/v1/BankSoal?No=eq.${no}`, {
+    method: 'DELETE',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => {
+    if(!res.ok) throw new Error("Gagal menghapus data!");
+    alert("Soal berhasil dihapus!");
+    loadAdminBankSoal();
+  })
+  .catch(err => alert(err.message));
+}
+
+// IMPORT SOAL DARI FILE LAPTOP (JSON)
+function triggerImportFile() {
+  document.getElementById('import-soal-file').click();
+}
+
+function importSoalDariFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if(!Array.isArray(data)) {
+        alert("Format JSON salah! Harus berupa Array objek soal.");
+        return;
+      }
+
+      if(!confirm(`Ditemukan ${data.length} soal dalam file. Lanjutkan import ke database Supabase?`)) return;
+
+      // Iterasi dan simpan semua soal secara berurutan
+      let promises = data.map(item => {
+        const payload = {
+          "No": parseInt(item["No"]),
+          "Soal": item["Soal"],
+          "URL Gambar Soal": item["URL Gambar Soal"] || "",
+          "Opsi A": item["Opsi A"] || "",
+          "Gambar Opsi A": item["Gambar Opsi A"] || "",
+          "Opsi B": item["Opsi B"] || "",
+          "Gambar Opsi B": item["Gambar Opsi B"] || "",
+          "Opsi C": item["Opsi C"] || "",
+          "Gambar Opsi C": item["Gambar Opsi C"] || "",
+          "Opsi D": item["Opsi D"] || "",
+          "Gambar Opsi D": item["Gambar Opsi D"] || "",
+          "Kunci Jawaban": item["Kunci Jawaban"] || "A"
+        };
+
+        return fetch(`${SUPABASE_URL}/rest/v1/BankSoal`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+      });
+
+      Promise.all(promises)
+      .then(() => {
+        alert("Semua soal berhasil diimport!");
+        loadAdminBankSoal();
+      })
+      .catch(err => alert("Sebagian atau seluruh soal gagal diimport ke server."));
+
+    } catch (err) {
+      alert("Gagal membaca file! Pastikan file adalah file JSON yang valid.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+</script>
+</body>
+</html>
