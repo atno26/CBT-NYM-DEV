@@ -474,6 +474,127 @@
   </div>
 </div>
 
+<!-- ===================================================================== -->
+<!-- BAGIAN YANG SEBELUMNYA TERHILANG (LAYAR UJIAN SISWA & REVIEW)        -->
+<!-- ===================================================================== -->
+
+<!-- LAYAR UJIAN SISWA -->
+<div id="exam-screen" class="hidden" style="min-height: 100vh; background-color: var(--bg-body); display: flex; flex-direction: column;">
+  <header class="header-exam">
+    <div class="student-info">
+      <h3 id="display-nama">Nama Siswa</h3>
+      <span id="display-kelas" class="text-muted">Kelas</span>
+    </div>
+    <div id="timer-container" class="timer-box">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      <span id="timer-display">00:00</span>
+    </div>
+  </header>
+  
+  <main class="container exam-layout" style="flex: 1;">
+    <!-- Panel Kiri (Soal) -->
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="q-header">
+        <div class="q-number">Soal <span>No. <span id="q-num-display">1</span></span></div>
+        <div class="font-controls">
+          <button onclick="resizeFont('small')">A-</button>
+          <button onclick="resizeFont('medium')">A</button>
+          <button onclick="resizeFont('large')">A+</button>
+        </div>
+      </div>
+      
+      <div id="content-animator" style="flex: 1;">
+        <div id="question-area" class="q-text">Materi soal akan muncul di sini.</div>
+        <div id="question-image-area" class="q-image-container hidden">
+          <img id="q-image" class="q-image" src="" alt="Gambar Soal">
+        </div>
+        
+        <div id="options-area" class="options-container">
+          <!-- Opsi jawaban di-render dari JS -->
+        </div>
+      </div>
+      
+      <div class="exam-footer">
+        <label class="flag-wrapper">
+          <input type="checkbox" id="flag-checkbox" onchange="toggleFlag()"> Ragu-ragu
+        </label>
+        <div style="display: flex; gap: 10px;">
+          <button id="btn-prev" class="btn btn-secondary" onclick="prevQuestion()">SEBELUMNYA</button>
+          <button id="btn-next" class="btn btn-primary" onclick="nextQuestion()">SELANJUTNYA</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Panel Kanan (Navigasi Grid) -->
+    <div class="card" style="align-self: flex-start; position: sticky; top: 100px;">
+      <div class="grid-title">Navigasi Soal</div>
+      <div id="number-grid" class="number-grid">
+        <!-- Tombol nomor soal di-render dari JS -->
+      </div>
+      
+      <div class="grid-legend">
+        <div class="legend-item"><div class="dot answered"></div> Dijawab</div>
+        <div class="legend-item"><div class="dot flagged"></div> Ragu</div>
+        <div class="legend-item"><div class="dot empty"></div> Kosong</div>
+      </div>
+      
+      <button class="btn btn-success" style="width: 100%; margin-top: 2rem; padding: 1rem;" onclick="showReview()">SELESAI & KIRIM JAWABAN</button>
+    </div>
+  </main>
+</div>
+
+<!-- LAYAR REVIEW / KONFIRMASI KIRIM -->
+<div id="review-screen" class="hidden" style="min-height: 100vh; background: rgba(15, 23, 42, 0.05); display: flex; align-items: center; justify-content: center; padding: 1rem;">
+  <div class="card" style="max-width: 500px; width: 100%; text-align: center;">
+    <h2 style="margin-bottom: 0.5rem; color: var(--text-main);">Konfirmasi Pengiriman</h2>
+    <p class="text-muted" style="margin-bottom: 2rem;">Pastikan Anda telah menjawab semua soal dengan benar sebelum mengirim.</p>
+    
+    <div class="review-grid" style="margin-bottom: 2rem; text-align: left;">
+      <div style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Total Soal</div>
+        <div id="rev-total" style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">0</div>
+      </div>
+      <div style="background: #ecfdf5; padding: 15px; border-radius: 12px; border: 1px solid #a7f3d0;">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Sudah Dijawab</div>
+        <div id="rev-answered" style="font-size: 1.5rem; font-weight: 800; color: var(--success);">0</div>
+      </div>
+      <div style="background: #fef2f2; padding: 15px; border-radius: 12px; border: 1px solid #fecaca;">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Belum Dijawab</div>
+        <div id="rev-unanswered" style="font-size: 1.5rem; font-weight: 800; color: var(--danger);">0</div>
+      </div>
+      <div style="background: #fffbeb; padding: 15px; border-radius: 12px; border: 1px solid #fde68a;">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Ragu-ragu</div>
+        <div id="rev-flagged" style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">0</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 15px;">
+      <button class="btn btn-secondary" style="flex: 1;" onclick="hideReview()">KEMBALI KE UJIAN</button>
+      <button id="btn-final-submit" class="btn btn-success" style="flex: 1;" onclick="submitData()">KIRIM SEKARANG</button>
+    </div>
+  </div>
+</div>
+
+<!-- LAYAR SUKSES SELESAI UJIAN -->
+<div id="success-screen" class="hidden" style="min-height: 100vh; background: var(--success); display: flex; align-items: center; justify-content: center; padding: 1rem; color: white;">
+  <div style="text-align: center; max-width: 500px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 1.5rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Ujian Selesai!</h1>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">Terima kasih. Jawaban Anda telah berhasil dikirim ke server. Anda sekarang dapat keluar dari ruangan.</p>
+    <button class="btn" style="background: white; color: var(--success); padding: 1rem 2rem; font-size: 1.1rem; border-radius: 30px;" onclick="location.reload()">KEMBALI KE BERANDA</button>
+  </div>
+</div>
+
+<!-- OVERLAY CHEAT / KECURANGAN -->
+<div id="cheat-overlay" class="overlay hidden">
+  <div class="cheat-warning-text">PERINGATAN!</div>
+  <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;" id="cheat-reason">Terdeteksi: Pindah Tab</h3>
+  <p style="font-size: 1.2rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;" id="cheat-strike-text">PERINGATAN 1 DARI 3</p>
+  <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">Sistem mencatat aktivitas mencurigakan ini dan akan dikirim ke Admin.</p>
+</div>
+
+<!-- ===================================================================== -->
+
 <!-- PANEL DASHBOARD ADMIN UTAMA -->
 <div id="admin-dashboard-screen" class="hidden" style="min-height: 100vh; background-color: var(--bg-body); padding: 2rem 1rem;">
   <div class="container" style="max-width: 1200px;">
@@ -662,31 +783,56 @@
     <!-- TAB 5: MANAJEMEN ADMIN (HANYA SUPER ADMIN) -->
     <div id="admin-tab-manajemen-admin" class="admin-tab-content hidden">
       <div class="card" style="max-width: 600px; margin: 0 auto; border: 2px solid #fca5a5;">
-        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--danger);">Reset Username & Password Admin</h3>
-        <p class="text-muted text-center text-sm" style="margin-bottom: 1.5rem;">Gunakan panel ini jika Guru/Admin lupa password untuk mengakses dashboard utama.</p>
+        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--danger);">Manajemen Kredensial Admin & Super Admin</h3>
+        <p class="text-muted text-center text-sm" style="margin-bottom: 1.5rem;">Perbarui username dan password secara langsung ke database Supabase.</p>
         
-        <div id="credentials-success" class="hidden" style="color: var(--success); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #ecfdf5; padding: 0.8rem; border-radius: 8px; border: 1px solid #a7f3d0;">Kredensial Admin berhasil diperbarui!</div>
+        <div id="credentials-success" class="hidden" style="color: var(--success); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; background: #ecfdf5; padding: 0.8rem; border-radius: 8px; border: 1px solid #a7f3d0;">Kredensial berhasil diperbarui!</div>
 
-        <div class="form-group" style="padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--secondary); margin-bottom: 2rem;">
-          <label style="color: var(--secondary);">Username Admin Saat Ini (Tersimpan):</label>
-          <div id="current-admin-user-display" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">admin</div>
+        <!-- FORM ADMIN BIASA -->
+        <h4 style="font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 15px;">Kredensial Admin Utama</h4>
+        <div class="form-group" style="padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--secondary); margin-bottom: 1rem;">
+          <label style="color: var(--secondary);">Username Admin Saat Ini (Supabase):</label>
+          <div id="current-admin-user-display" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">Memuat...</div>
         </div>
-
-        <div class="form-group">
-          <label>Username Admin Baru</label>
-          <input type="text" id="admin-new-username" class="form-control" placeholder="Contoh: adminbaru">
-        </div>
-        <div class="form-group">
-          <label>Password Admin Baru</label>
-          <div style="position: relative;">
-            <input type="password" id="admin-new-password" class="form-control" placeholder="Masukkan password baru" style="padding-right: 2.5rem;">
-            <span onclick="togglePassword('admin-new-password', 'eye-icon-new-admin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
-              <svg id="eye-icon-new-admin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-            </span>
+        <div class="admin-form-row">
+          <div class="form-group">
+            <label>Username Admin Baru</label>
+            <input type="text" id="admin-new-username" class="form-control" placeholder="Contoh: adminbaru">
+          </div>
+          <div class="form-group">
+            <label>Password Admin Baru</label>
+            <div style="position: relative;">
+              <input type="password" id="admin-new-password" class="form-control" placeholder="Masukkan password baru">
+              <span onclick="togglePassword('admin-new-password', 'eye-icon-new-admin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+                <svg id="eye-icon-new-admin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
+            </div>
           </div>
         </div>
+        <button class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem; margin-bottom: 2rem;" onclick="simpanKredensialAdmin()">UPDATE KREDENSIAL ADMIN</button>
 
-        <button class="btn btn-danger" style="width: 100%; padding: 1rem; font-size: 1rem;" onclick="simpanKredensialAdmin()">RESET & UPDATE KREDENSIAL ADMIN</button>
+        <!-- FORM SUPER ADMIN -->
+        <h4 style="font-weight: 700; border-bottom: 1px solid var(--danger); padding-bottom: 5px; margin-bottom: 15px; color: var(--danger);">Kredensial Super Admin</h4>
+        <div class="form-group" style="padding: 1rem; background: #fef2f2; border-radius: 8px; border: 1px dashed var(--danger); margin-bottom: 1rem;">
+          <label style="color: var(--danger);">Username Super Admin Saat Ini (Supabase):</label>
+          <div id="current-superadmin-user-display" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">Memuat...</div>
+        </div>
+        <div class="admin-form-row">
+          <div class="form-group">
+            <label>Username Super Admin Baru</label>
+            <input type="text" id="superadmin-new-username" class="form-control" placeholder="Contoh: superadmin">
+          </div>
+          <div class="form-group">
+            <label>Password Super Admin Baru</label>
+            <div style="position: relative;">
+              <input type="password" id="superadmin-new-password" class="form-control" placeholder="Masukkan password baru">
+              <span onclick="togglePassword('superadmin-new-password', 'eye-icon-new-superadmin')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); display: flex;">
+                <svg id="eye-icon-new-superadmin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-danger" style="width: 100%; padding: 1rem; font-size: 1rem;" onclick="simpanKredensialSuperAdmin()">UPDATE KREDENSIAL SUPER ADMIN</button>
       </div>
     </div>
 
@@ -760,7 +906,7 @@
       </div>
       <div class="form-group">
         <label>Upload Gambar Lokal (Opsional)</label>
-        <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-url', 'preview-soal-gbr')">
+        <input type="file" accept="image/*" class="form-control" onchange="uploadImageToStorage(event, 'modal-soal-gbr-url', 'preview-soal-gbr')">
       </div>
     </div>
     <div style="text-align: center; margin-bottom: 15px;">
@@ -781,7 +927,7 @@
         </div>
         <div class="form-group">
           <label>Upload Gambar Opsi A</label>
-          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-a', 'preview-gbr-a')">
+          <input type="file" accept="image/*" class="form-control" onchange="uploadImageToStorage(event, 'modal-soal-gbr-a', 'preview-gbr-a')">
         </div>
       </div>
       <div style="text-align: center;"><img id="preview-gbr-a" class="admin-img-preview" src="" alt="Preview Gambar A" onerror="this.style.display='none'"></div>
@@ -801,7 +947,7 @@
         </div>
         <div class="form-group">
           <label>Upload Gambar Opsi B</label>
-          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-b', 'preview-gbr-b')">
+          <input type="file" accept="image/*" class="form-control" onchange="uploadImageToStorage(event, 'modal-soal-gbr-b', 'preview-gbr-b')">
         </div>
       </div>
       <div style="text-align: center;"><img id="preview-gbr-b" class="admin-img-preview" src="" alt="Preview Gambar B" onerror="this.style.display='none'"></div>
@@ -821,7 +967,7 @@
         </div>
         <div class="form-group">
           <label>Upload Gambar Opsi C</label>
-          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-c', 'preview-gbr-c')">
+          <input type="file" accept="image/*" class="form-control" onchange="uploadImageToStorage(event, 'modal-soal-gbr-c', 'preview-gbr-c')">
         </div>
       </div>
       <div style="text-align: center;"><img id="preview-gbr-c" class="admin-img-preview" src="" alt="Preview Gambar C" onerror="this.style.display='none'"></div>
@@ -841,7 +987,7 @@
         </div>
         <div class="form-group">
           <label>Upload Gambar Opsi D</label>
-          <input type="file" accept="image/*" class="form-control" onchange="convertImageToBase64(event, 'modal-soal-gbr-d', 'preview-gbr-d')">
+          <input type="file" accept="image/*" class="form-control" onchange="uploadImageToStorage(event, 'modal-soal-gbr-d', 'preview-gbr-d')">
         </div>
       </div>
       <div style="text-align: center;"><img id="preview-gbr-d" class="admin-img-preview" src="" alt="Preview Gambar D" onerror="this.style.display='none'"></div>
@@ -872,10 +1018,6 @@ const SUPABASE_URL = "https://ataatqydeyfszwmiulux.supabase.co"; // Ganti URL in
 const SUPABASE_ANON_KEY = "sb_publishable_kMmO94k12oY70px5D6wa-g__buj2fUO"; // Ganti Key ini
 // ===========================================================================
 
-// Kredensial Hardcode Super Admin
-const SUPER_ADMIN_USER = "superadmin";
-const SUPER_ADMIN_PASS = "superadmin123";
-
 let questions = []; 
 let EXAM_DURATION_MINUTES = 60; 
 
@@ -891,7 +1033,7 @@ let cheatStrikes = 0;
 const MAX_STRIKES = 3; 
 let currentActiveRole = ""; // Untuk melacak yang login: 'admin' atau 'superadmin'
 
-// Admin System Variables
+// Admin System Variables (Default fallbacks, akan ditimpa oleh Supabase)
 let adminToken = "spentiglob26";
 let adminTanggalUjian = "";
 let adminJenisUjian = "Sumatif Akhir Semester Genap"; 
@@ -906,27 +1048,42 @@ let fetchedResults = [];
 // Variabel Penahan ID Input Aktif untuk Toolbar Matematika
 let activeMathInputId = "modal-soal-teks";
 
-// Load custom settings from localStorage if any
-if(localStorage.getItem('cbt_admin_token')) { adminToken = localStorage.getItem('cbt_admin_token'); }
-if(localStorage.getItem('cbt_admin_durasi')) {
-    EXAM_DURATION_MINUTES = parseInt(localStorage.getItem('cbt_admin_durasi'));
-    timeLeft = EXAM_DURATION_MINUTES * 60;
-}
-if(localStorage.getItem('cbt_admin_tanggal')) { adminTanggalUjian = localStorage.getItem('cbt_admin_tanggal'); }
-if(localStorage.getItem('cbt_admin_jenis_ujian')) { adminJenisUjian = localStorage.getItem('cbt_admin_jenis_ujian'); }
-if(localStorage.getItem('cbt_admin_tahun_pelajaran')) { adminTahunPelajaran = localStorage.getItem('cbt_admin_tahun_pelajaran'); }
-if(localStorage.getItem('cbt_admin_nama_sekolah')) { adminNamaSekolah = localStorage.getItem('cbt_admin_nama_sekolah'); }
-if(localStorage.getItem('cbt_admin_alamat_sekolah')) { adminAlamatSekolah = localStorage.getItem('cbt_admin_alamat_sekolah'); }
-if(localStorage.getItem('cbt_admin_logo')) { adminLogo = localStorage.getItem('cbt_admin_logo'); }
-if(localStorage.getItem('cbt_admin_kepsek_nama')) { adminKepsekName = localStorage.getItem('cbt_admin_kepsek_nama'); }
-if(localStorage.getItem('cbt_admin_kepsek_nip')) { adminKepsekNip = localStorage.getItem('cbt_admin_kepsek_nip'); }
+// FUNGSI LOAD PENGATURAN DARI SUPABASE SAAT AWAL APLIKASI DIBUKA
+function loadPengaturanDariSupabase() {
+  fetch(`${SUPABASE_URL}/rest/v1/PengaturanUjian?id=eq.1&select=*`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data && data.length > 0) {
+      const setting = data[0];
+      adminJenisUjian = setting["Jenis Ujian"] || adminJenisUjian;
+      adminTahunPelajaran = setting["Tahun Pelajaran"] || adminTahunPelajaran;
+      adminNamaSekolah = setting["Nama Sekolah"] || adminNamaSekolah;
+      adminAlamatSekolah = setting["Alamat Sekolah"] || adminAlamatSekolah;
+      adminLogo = setting["Logo URL"] || adminLogo;
+      adminKepsekName = setting["Nama Kepala Sekolah"] || adminKepsekName;
+      adminKepsekNip = setting["NIP Kepala Sekolah"] || adminKepsekNip;
+      adminToken = setting["Token"] || adminToken;
+      adminTanggalUjian = setting["Tanggal Ujian"] || adminTanggalUjian;
+      EXAM_DURATION_MINUTES = setting["Durasi"] || EXAM_DURATION_MINUTES;
+      timeLeft = EXAM_DURATION_MINUTES * 60;
 
-// Sinkronkan teks jenis ujian ke tampilan login siswa saat awal dibuka
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
-  document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
-  document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
-});
+      // Update Tampilan DOM
+      document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
+      document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
+      document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
+      document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
+      document.getElementById('display-logo').src = adminLogo;
+      document.getElementById('display-logo-admin').src = adminLogo;
+    }
+  })
+  .catch(err => console.error("Gagal memuat pengaturan ujian dari Supabase:", err));
+}
 
 // Mencegah Copy Paste
 document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
@@ -947,13 +1104,8 @@ function togglePassword(inputId, iconId) {
 }
 
 window.onload = function() {
-    // Sinkronisasi ulang teks jenis ujian jika ada di local storage
-    document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
-    document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
-    document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
-    document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
-    document.getElementById('display-logo').src = adminLogo;
-    document.getElementById('display-logo-admin').src = adminLogo;
+    // Muat semua pengaturan sistem secara langsung dari Supabase
+    loadPengaturanDariSupabase();
 
     const savedState = localStorage.getItem('cbt_exam_state');
     if(savedState) {
@@ -1561,25 +1713,74 @@ function attemptSuperAdminLogin() {
   const user = document.getElementById('super-admin-username').value.trim();
   const pass = document.getElementById('super-admin-password').value.trim();
   const errorDiv = document.getElementById('super-admin-login-error');
+  const btnLogin = document.querySelector('#super-admin-login-screen .btn-danger');
 
-  // Cek Kredensial Super Admin
-  if(user === SUPER_ADMIN_USER && pass === SUPER_ADMIN_PASS) {
-    currentActiveRole = "superadmin";
-    document.getElementById('super-admin-login-screen').classList.add('hidden');
-    document.getElementById('admin-dashboard-screen').classList.remove('hidden');
-    
-    // UI Penyesuaian Role
-    document.getElementById('dashboard-title-text').innerText = "Dashboard SUPER Administrator";
-    document.getElementById('tab-btn-manajemen-admin').style.display = "inline-block"; // Tampilkan tab reset
-
-    // Default Tab
-    switchAdminTab('tab-soal');
-    loadAdminBankSoal();
-    loadAdminResults();
-  } else {
-    errorDiv.innerText = "⚠️ Username atau password Super Admin salah!";
+  if(!user || !pass) {
+    errorDiv.innerText = "⚠️ Username dan Password wajib diisi!";
     errorDiv.classList.remove('hidden');
+    return;
   }
+
+  btnLogin.innerText = "Memverifikasi...";
+  btnLogin.disabled = true;
+
+  // Cek Kredensial Super Admin dari Supabase
+  fetch(`${SUPABASE_URL}/rest/v1/SuperAdminAuth?id=eq.1&select=*`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  })
+  .then(res => {
+    if(!res.ok) throw new Error();
+    return res.json();
+  })
+  .then(data => {
+    let dbUser = "superadmin";
+    let dbPass = "superadmin123";
+
+    if(data && data.length > 0) {
+      dbUser = data[0].Username;
+      dbPass = data[0].Password;
+    }
+
+    if(user === dbUser && pass === dbPass) {
+      currentActiveRole = "superadmin";
+      document.getElementById('super-admin-login-screen').classList.add('hidden');
+      document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+      
+      // UI Penyesuaian Role
+      document.getElementById('dashboard-title-text').innerText = "Dashboard SUPER Administrator";
+      document.getElementById('tab-btn-manajemen-admin').style.display = "inline-block"; // Tampilkan tab reset
+
+      // Default Tab
+      switchAdminTab('tab-soal');
+      loadAdminBankSoal();
+      loadAdminResults();
+    } else {
+      errorDiv.innerText = "⚠️ Username atau password Super Admin salah!";
+      errorDiv.classList.remove('hidden');
+    }
+  })
+  .catch(() => {
+    // Fallback Darurat Offline
+    if(user === "superadmin" && pass === "superadmin123") {
+      currentActiveRole = "superadmin";
+      document.getElementById('super-admin-login-screen').classList.add('hidden');
+      document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+      document.getElementById('dashboard-title-text').innerText = "Dashboard SUPER Administrator";
+      document.getElementById('tab-btn-manajemen-admin').style.display = "inline-block";
+      switchAdminTab('tab-soal');
+    } else {
+      errorDiv.innerText = "⚠️ Gagal terhubung ke database Supabase atau sandi salah.";
+      errorDiv.classList.remove('hidden');
+    }
+  })
+  .finally(() => {
+    btnLogin.innerText = "MASUK SUPER ADMIN";
+    btnLogin.disabled = false;
+  });
 }
 
 function logoutAdmin() {
@@ -1634,10 +1835,13 @@ function switchAdminTab(tabId) {
     document.getElementById('admin-setting-tanggal').value = adminTanggalUjian;
     document.getElementById('admin-setting-durasi').value = EXAM_DURATION_MINUTES;
   } else if (tabId === 'tab-manajemen-admin') {
-    // Mengambil username admin yang tersimpan saat ini dari Supabase secara dinamis
+    // Mengambil username admin dan super admin yang tersimpan dari Supabase
     const currentAdminUserSpan = document.getElementById('current-admin-user-display');
+    const currentSuperAdminUserSpan = document.getElementById('current-superadmin-user-display');
     currentAdminUserSpan.innerText = "Memuat data...";
+    currentSuperAdminUserSpan.innerText = "Memuat data...";
 
+    // Fetch Admin
     fetch(`${SUPABASE_URL}/rest/v1/AdminAuth?id=eq.1&select=*`, {
       method: 'GET',
       headers: {
@@ -1654,10 +1858,26 @@ function switchAdminTab(tabId) {
       } else {
         currentAdminUserSpan.innerText = "admin";
       }
+    }).catch(() => currentAdminUserSpan.innerText = "admin");
+
+    // Fetch Super Admin
+    fetch(`${SUPABASE_URL}/rest/v1/SuperAdminAuth?id=eq.1&select=*`, {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      }
     })
-    .catch(() => {
-      currentAdminUserSpan.innerText = localStorage.getItem('cbt_admin_user_credential') || "admin";
-    });
+    .then(res => res.json())
+    .then(data => {
+      if(data && data.length > 0) {
+        currentSuperAdminUserSpan.innerText = data[0].Username;
+        document.getElementById('superadmin-new-username').value = data[0].Username;
+        document.getElementById('superadmin-new-password').value = data[0].Password;
+      } else {
+        currentSuperAdminUserSpan.innerText = "superadmin";
+      }
+    }).catch(() => currentSuperAdminUserSpan.innerText = "superadmin");
   }
 }
 
@@ -2284,6 +2504,11 @@ function cetakAnalisisPDF() {
 
 // PENGATURAN EXAM SETTINGS
 function simpanPengaturanUjian() {
+  const btnSimpan = event.target;
+  const originalText = btnSimpan.innerText;
+  btnSimpan.innerText = "MENYIMPAN...";
+  btnSimpan.disabled = true;
+
   const jenis = document.getElementById('admin-setting-jenis-ujian').value.trim();
   const tahun = document.getElementById('admin-setting-tahun-pelajaran').value.trim();
   const namaSekolah = document.getElementById('admin-setting-nama-sekolah').value.trim();
@@ -2295,50 +2520,65 @@ function simpanPengaturanUjian() {
   const tgl = document.getElementById('admin-setting-tanggal').value;
   const durasi = parseInt(document.getElementById('admin-setting-durasi').value);
 
-  if(!jenis) {
-    alert("Jenis / Nama ujian tidak boleh kosong!");
-    return;
-  }
-  if(!token) {
-    alert("Token tidak boleh kosong!");
-    return;
-  }
+  if(!jenis) { alert("Jenis / Nama ujian tidak boleh kosong!"); btnSimpan.innerText = originalText; btnSimpan.disabled = false; return; }
+  if(!token) { alert("Token tidak boleh kosong!"); btnSimpan.innerText = originalText; btnSimpan.disabled = false; return; }
 
-  adminJenisUjian = jenis;
-  adminTahunPelajaran = tahun || "Tahun Pelajaran 2025/2026";
-  adminNamaSekolah = namaSekolah || "UPTD SMP Negeri 3 Lobalain";
-  adminAlamatSekolah = alamatSekolah || "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
-  adminToken = token;
-  if(logoUrl) adminLogo = logoUrl;
-  adminKepsekName = kepsekNama || "Siprianus P. L. Sula, S.Pd";
-  adminKepsekNip = kepsekNip || "19780512 200501 1 008";
-  adminTanggalUjian = tgl;
-  EXAM_DURATION_MINUTES = durasi;
-  timeLeft = durasi * 60;
+  // Upload perubahan pengaturan ke Tabel Supabase
+  const payload = {
+    "Jenis Ujian": jenis,
+    "Tahun Pelajaran": tahun,
+    "Nama Sekolah": namaSekolah,
+    "Alamat Sekolah": alamatSekolah,
+    "Logo URL": logoUrl,
+    "Nama Kepala Sekolah": kepsekNama,
+    "NIP Kepala Sekolah": kepsekNip,
+    "Token": token,
+    "Tanggal Ujian": tgl,
+    "Durasi": durasi
+  };
 
-  // Simpan permanen di browser lokal agar tidak ter-reset
-  localStorage.setItem('cbt_admin_jenis_ujian', jenis);
-  localStorage.setItem('cbt_admin_tahun_pelajaran', adminTahunPelajaran);
-  localStorage.setItem('cbt_admin_nama_sekolah', adminNamaSekolah);
-  localStorage.setItem('cbt_admin_alamat_sekolah', adminAlamatSekolah);
-  localStorage.setItem('cbt_admin_token', token);
-  localStorage.setItem('cbt_admin_logo', adminLogo);
-  localStorage.setItem('cbt_admin_kepsek_nama', adminKepsekName);
-  localStorage.setItem('cbt_admin_kepsek_nip', adminKepsekNip);
-  localStorage.setItem('cbt_admin_tanggal', tgl);
-  localStorage.setItem('cbt_admin_durasi', durasi.toString());
+  fetch(`${SUPABASE_URL}/rest/v1/PengaturanUjian?id=eq.1`, {
+    method: 'PATCH',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if(!res.ok) throw new Error("Gagal menyimpan ke Supabase. Pastikan tabel 'PengaturanUjian' sudah dibuat di Supabase!");
+    
+    adminJenisUjian = jenis;
+    adminTahunPelajaran = tahun || "Tahun Pelajaran 2025/2026";
+    adminNamaSekolah = namaSekolah || "UPTD SMP Negeri 3 Lobalain";
+    adminAlamatSekolah = alamatSekolah || "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
+    adminToken = token;
+    if(logoUrl) adminLogo = logoUrl;
+    adminKepsekName = kepsekNama || "Siprianus P. L. Sula, S.Pd";
+    adminKepsekNip = kepsekNip || "19780512 200501 1 008";
+    adminTanggalUjian = tgl;
+    EXAM_DURATION_MINUTES = durasi;
+    timeLeft = durasi * 60;
 
-  // Perbarui teks & logo di layar masuk utama murid secara instan
-  document.getElementById('display-jenis-ujian').innerText = jenis;
-  document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
-  document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
-  document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
-  document.getElementById('display-logo').src = adminLogo;
-  document.getElementById('display-logo-admin').src = adminLogo;
+    // Perbarui teks & logo secara instan
+    document.getElementById('display-jenis-ujian').innerText = jenis;
+    document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
+    document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
+    document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
+    document.getElementById('display-logo').src = adminLogo;
+    document.getElementById('display-logo-admin').src = adminLogo;
 
-  const successAlert = document.getElementById('settings-success');
-  successAlert.classList.remove('hidden');
-  setTimeout(() => successAlert.classList.add('hidden'), 3000);
+    const successAlert = document.getElementById('settings-success');
+    successAlert.classList.remove('hidden');
+    setTimeout(() => successAlert.classList.add('hidden'), 3000);
+  })
+  .catch(err => alert(err.message))
+  .finally(() => {
+    btnSimpan.innerText = originalText;
+    btnSimpan.disabled = false;
+  });
 }
 
 // SIMPAN KREDENSIAL LOGIN ADMIN (Mengunggah dan menimpa baris kredensial dinamis di Supabase)
@@ -2370,15 +2610,12 @@ function simpanKredensialAdmin() {
   .then(res => {
     if(!res.ok) throw new Error("Gagal menyimpan kredensial baru ke database online Supabase!");
     
-    // Simpan salinan lokal cadangan di localStorage browser sebagai fallback offline
-    localStorage.setItem('cbt_admin_user_credential', newUser);
-    localStorage.setItem('cbt_admin_pass_credential', newPass);
-
     // Perbarui tampilan informasi saat ini di UI
     document.getElementById('current-admin-user-display').innerText = newUser;
     document.getElementById('admin-new-password').value = "";
 
     const successAlert = document.getElementById('credentials-success');
+    successAlert.innerText = "Kredensial Admin Utama berhasil diperbarui!";
     successAlert.classList.remove('hidden');
     setTimeout(() => successAlert.classList.add('hidden'), 3000);
   })
@@ -2387,16 +2624,107 @@ function simpanKredensialAdmin() {
   });
 }
 
-function convertSettingLogo(event) {
+// SIMPAN KREDENSIAL LOGIN SUPER ADMIN KE SUPABASE
+function simpanKredensialSuperAdmin() {
+  const newUser = document.getElementById('superadmin-new-username').value.trim();
+  const newPass = document.getElementById('superadmin-new-password').value.trim();
+
+  if(!newUser || !newPass) {
+    alert("Username dan Password Super Admin tidak boleh kosong!");
+    return;
+  }
+
+  const payload = {
+    "Username": newUser,
+    "Password": newPass
+  };
+
+  fetch(`${SUPABASE_URL}/rest/v1/SuperAdminAuth?id=eq.1`, {
+    method: 'PATCH',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if(!res.ok) throw new Error("Gagal menyimpan kredensial Super Admin ke database Supabase. Pastikan tabel 'SuperAdminAuth' ada!");
+    
+    document.getElementById('current-superadmin-user-display').innerText = newUser;
+    document.getElementById('superadmin-new-password').value = "";
+
+    const successAlert = document.getElementById('credentials-success');
+    successAlert.innerText = "Kredensial Super Admin berhasil diperbarui!";
+    successAlert.classList.remove('hidden');
+    setTimeout(() => successAlert.classList.add('hidden'), 3000);
+  })
+  .catch(err => alert(err.message));
+}
+
+async function convertSettingLogo(event) {
   const file = event.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    document.getElementById('admin-setting-logo-url').value = e.target.result;
-    document.getElementById('admin-setting-logo-preview').src = e.target.result;
-  };
-  reader.readAsDataURL(file);
+
+  // 1. Tampilkan indikator loading dan nonaktifkan input sementara
+  const urlInput = document.getElementById('admin-setting-logo-url');
+  const previewImg = document.getElementById('admin-setting-logo-preview');
+  const originalInputPlaceholder = urlInput.placeholder;
+  
+  urlInput.value = "Mengunggah gambar ke server...";
+  urlInput.disabled = true;
+
+  // 2. Buat nama file yang unik (menggunakan timestamp)
+  const fileExt = file.name.split('.').pop();
+  const fileName = `logo_${Date.now()}.${fileExt}`;
+  const bucketName = 'logos'; // Sesuai dengan bucket yang Anda buat di Supabase
+
+  try {
+    // 3. Upload file langsung ke Supabase Storage via REST API
+    const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucketName}/${fileName}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': file.type
+      },
+      body: file
+    });
+
+    if (!uploadRes.ok) {
+        const errData = await uploadRes.json();
+        throw new Error(errData.message || "Gagal mengunggah gambar ke storage.");
+    }
+
+    // 4. Bangun Public URL untuk gambar yang berhasil diunggah
+    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/${bucketName}/${fileName}`;
+    
+    // 5. Update input form dan preview gambar dengan URL dari Supabase
+    urlInput.value = publicUrl;
+    previewImg.src = publicUrl;
+    
+    // Tampilkan notifikasi sukses kecil
+    const successAlert = document.getElementById('settings-success');
+    successAlert.innerText = "Logo terunggah! Jangan lupa klik 'SIMPAN PENGATURAN' di bawah.";
+    successAlert.classList.remove('hidden');
+    setTimeout(() => {
+        successAlert.classList.add('hidden');
+        successAlert.innerText = "Pengaturan berhasil disimpan!"; // Kembalikan teks asli
+    }, 4000);
+
+  } catch (err) {
+    alert("Error Upload: " + err.message + "\n\nPastikan Anda sudah membuat Storage Bucket bernama 'logos' dan mengaturnya menjadi Public di dashboard Supabase.");
+    urlInput.value = "";
+  } finally {
+    // Kembalikan form ke status aktif
+    urlInput.disabled = false;
+    urlInput.placeholder = originalInputPlaceholder;
+    // Reset file input agar jika gagal, user bisa upload file yang sama lagi
+    event.target.value = ''; 
+  }
 }
+
 
 // TAMBAH & EDIT SOAL MANUAL (CRUD)
 function openTambahSoalModal() {
@@ -2474,19 +2802,56 @@ function closeTambahSoalModal() {
   document.getElementById('admin-soal-modal').classList.remove('flex');
 }
 
-// CONVERT LOCAL UPLOAD TO BASE64 DIRECTLY
-function convertImageToBase64(event, urlFieldId, imgPreviewId) {
+// UPLOAD GAMBAR SOAL / OPSI KE SUPABASE STORAGE
+async function uploadImageToStorage(event, urlFieldId, imgPreviewId) {
   const file = event.target.files[0];
   if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    document.getElementById(urlFieldId).value = e.target.result;
-    const img = document.getElementById(imgPreviewId);
-    img.src = e.target.result;
-    img.style.display = 'inline-block';
-  };
-  reader.readAsDataURL(file);
+  const urlInput = document.getElementById(urlFieldId);
+  const previewImg = document.getElementById(imgPreviewId);
+  const originalInputPlaceholder = urlInput.placeholder;
+  
+  urlInput.value = "Mengunggah gambar...";
+  urlInput.disabled = true;
+
+  // Buat nama file unik (menggunakan timestamp dan string acak)
+  const fileExt = file.name.split('.').pop();
+  const randomStr = Math.random().toString(36).substring(2, 8);
+  const fileName = `soal_${Date.now()}_${randomStr}.${fileExt}`;
+  
+  // Menggunakan bucket 'logos' yang sudah Anda atur sebagai Public sebelumnya
+  const bucketName = 'logos'; 
+
+  try {
+    const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucketName}/${fileName}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': file.type
+      },
+      body: file
+    });
+
+    if (!uploadRes.ok) {
+        const errData = await uploadRes.json();
+        throw new Error(errData.message || "Gagal mengunggah gambar ke storage.");
+    }
+
+    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/${bucketName}/${fileName}`;
+    
+    urlInput.value = publicUrl;
+    previewImg.src = publicUrl;
+    previewImg.style.display = 'inline-block';
+
+  } catch (err) {
+    alert("Error Upload: " + err.message + "\n\nPastikan Anda sudah memiliki Storage Bucket bernama 'logos' yang Public di Supabase.");
+    urlInput.value = "";
+  } finally {
+    urlInput.disabled = false;
+    urlInput.placeholder = originalInputPlaceholder;
+    event.target.value = ''; 
+  }
 }
 
 function previewImage(urlFieldId, imgPreviewId) {
