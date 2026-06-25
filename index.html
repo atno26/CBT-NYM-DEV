@@ -355,7 +355,7 @@
       <img id="display-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_of_the_Ministry_of_Education_and_Culture_of_the_Republic_of_Indonesia.svg" alt="Logo Sekolah" style="width: 100%; height: 100%; object-fit: contain;">
     </div> 
     <h2 id="display-nama-sekolah" style="margin-bottom: 0.2rem;">UPTD SMP Negeri 3 Lobalain</h2>
-    <h3 style="margin-bottom: 0.3rem;">Mata Pelajaran Matematika Kelas VIII</h3>
+    <h3 id="display-mata-pelajaran" style="margin-bottom: 0.3rem;">Mata Pelajaran Matematika Kelas VIII</h3>
     <p id="display-tahun-pelajaran" style="margin-bottom: 0.2rem; font-weight: 600; color: var(--text-main);">Tahun Pelajaran 2025/2026</p>
     <p id="display-jenis-ujian" class="text-muted" style="margin-bottom: 2rem; font-size: 0.9rem; font-weight: 600;">Sumatif Akhir Semester Genap</p>
     
@@ -656,6 +656,12 @@
           <label>Nama / Jenis Ujian</label>
           <input type="text" id="admin-setting-jenis-ujian" class="form-control" style="font-weight: 600;" placeholder="Contoh: Sumatif Akhir Semester Genap">
           <small class="text-muted">Mengubah teks "Sumatif Akhir Semester Genap" di halaman login siswa.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Mata Pelajaran</label>
+          <input type="text" id="admin-setting-mata-pelajaran" class="form-control" style="font-weight: 600;" placeholder="Contoh: Mata Pelajaran Matematika Kelas VIII">
+          <small class="text-muted">Mengubah teks mata pelajaran di halaman login siswa dan laporan.</small>
         </div>
 
         <div class="form-group">
@@ -1037,6 +1043,7 @@ let currentActiveRole = ""; // Untuk melacak yang login: 'admin' atau 'superadmi
 let adminToken = "spentiglob26";
 let adminTanggalUjian = "";
 let adminJenisUjian = "Sumatif Akhir Semester Genap"; 
+let adminMataPelajaran = "Mata Pelajaran Matematika Kelas VIII";
 let adminTahunPelajaran = "Tahun Pelajaran 2025/2026"; 
 let adminNamaSekolah = "UPTD SMP Negeri 3 Lobalain";
 let adminAlamatSekolah = "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
@@ -1062,6 +1069,7 @@ function loadPengaturanDariSupabase() {
     if(data && data.length > 0) {
       const setting = data[0];
       adminJenisUjian = setting["Jenis Ujian"] || adminJenisUjian;
+      adminMataPelajaran = setting["Mata Pelajaran"] || adminMataPelajaran;
       adminTahunPelajaran = setting["Tahun Pelajaran"] || adminTahunPelajaran;
       adminNamaSekolah = setting["Nama Sekolah"] || adminNamaSekolah;
       adminAlamatSekolah = setting["Alamat Sekolah"] || adminAlamatSekolah;
@@ -1075,6 +1083,7 @@ function loadPengaturanDariSupabase() {
 
       // Update Tampilan DOM
       document.getElementById('display-jenis-ujian').innerText = adminJenisUjian;
+      document.getElementById('display-mata-pelajaran').innerText = adminMataPelajaran;
       document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
       document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
       document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
@@ -1824,6 +1833,7 @@ function switchAdminTab(tabId) {
   } else if (tabId === 'tab-pengaturan') {
     // Sinkronkan form UI admin dengan variable
     document.getElementById('admin-setting-jenis-ujian').value = adminJenisUjian;
+    document.getElementById('admin-setting-mata-pelajaran').value = adminMataPelajaran;
     document.getElementById('admin-setting-tahun-pelajaran').value = adminTahunPelajaran;
     document.getElementById('admin-setting-nama-sekolah').value = adminNamaSekolah;
     document.getElementById('admin-setting-alamat-sekolah').value = adminAlamatSekolah;
@@ -2060,7 +2070,7 @@ function exportHasilExcel() {
         <tr><td colspan="8" class="no-border center bold" style="font-size: 13pt; text-decoration: underline;">REKAPITULASI HASIL ${adminJenisUjian.toUpperCase()}</td></tr>
         <tr><td colspan="8" class="no-border"></td></tr>
         <tr>
-          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="6" class="no-border">Matematika (Kelas VIII)</td>
+          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="6" class="no-border">${adminMataPelajaran}</td>
         </tr>
         <tr>
           <td colspan="2" class="no-border bold">Tanggal Cetak:</td><td colspan="6" class="no-border">${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
@@ -2258,7 +2268,7 @@ function cetakHasilPDF() {
       <div class="doc-title">REKAPITULASI HASIL ${adminJenisUjian.toUpperCase()}</div>
       
       <div class="meta-info">
-        <div><strong>Mata Pelajaran:</strong> Matematika (Kelas VIII)</div>
+        <div><strong>Mata Pelajaran:</strong> ${adminMataPelajaran}</div>
         <div><strong>Tanggal Cetak:</strong> ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
       </div>
 
@@ -2329,7 +2339,7 @@ function exportAnalisisExcel() {
         <tr><td colspan="6" class="no-border center bold" style="font-size: 13pt; text-decoration: underline;">ANALISIS TINGKAT KESUKARAN SOAL ${adminJenisUjian.toUpperCase()}</td></tr>
         <tr><td colspan="6" class="no-border"></td></tr>
         <tr>
-          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="4" class="no-border">Matematika (Kelas VIII)</td>
+          <td colspan="2" class="no-border bold">Mata Pelajaran:</td><td colspan="4" class="no-border">${adminMataPelajaran}</td>
         </tr>
         <tr>
           <td colspan="2" class="no-border bold">Tanggal Cetak:</td><td colspan="4" class="no-border">${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
@@ -2467,7 +2477,7 @@ function cetakAnalisisPDF() {
       <div class="doc-title">ANALISIS TINGKAT KESUKARAN SOAL ${adminJenisUjian.toUpperCase()}</div>
       
       <div class="meta-info">
-        <div><strong>Mata Pelajaran:</strong> Matematika (Kelas VIII)</div>
+        <div><strong>Mata Pelajaran:</strong> ${adminMataPelajaran}</div>
         <div><strong>Tanggal Cetak:</strong> ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
       </div>
 
@@ -2510,6 +2520,7 @@ function simpanPengaturanUjian() {
   btnSimpan.disabled = true;
 
   const jenis = document.getElementById('admin-setting-jenis-ujian').value.trim();
+  const mataPelajaran = document.getElementById('admin-setting-mata-pelajaran').value.trim();
   const tahun = document.getElementById('admin-setting-tahun-pelajaran').value.trim();
   const namaSekolah = document.getElementById('admin-setting-nama-sekolah').value.trim();
   const alamatSekolah = document.getElementById('admin-setting-alamat-sekolah').value.trim();
@@ -2521,11 +2532,13 @@ function simpanPengaturanUjian() {
   const durasi = parseInt(document.getElementById('admin-setting-durasi').value);
 
   if(!jenis) { alert("Jenis / Nama ujian tidak boleh kosong!"); btnSimpan.innerText = originalText; btnSimpan.disabled = false; return; }
+  if(!mataPelajaran) { alert("Mata Pelajaran tidak boleh kosong!"); btnSimpan.innerText = originalText; btnSimpan.disabled = false; return; }
   if(!token) { alert("Token tidak boleh kosong!"); btnSimpan.innerText = originalText; btnSimpan.disabled = false; return; }
 
   // Upload perubahan pengaturan ke Tabel Supabase
   const payload = {
     "Jenis Ujian": jenis,
+    "Mata Pelajaran": mataPelajaran,
     "Tahun Pelajaran": tahun,
     "Nama Sekolah": namaSekolah,
     "Alamat Sekolah": alamatSekolah,
@@ -2551,6 +2564,7 @@ function simpanPengaturanUjian() {
     if(!res.ok) throw new Error("Gagal menyimpan ke Supabase. Pastikan tabel 'PengaturanUjian' sudah dibuat di Supabase!");
     
     adminJenisUjian = jenis;
+    adminMataPelajaran = mataPelajaran;
     adminTahunPelajaran = tahun || "Tahun Pelajaran 2025/2026";
     adminNamaSekolah = namaSekolah || "UPTD SMP Negeri 3 Lobalain";
     adminAlamatSekolah = alamatSekolah || "Alamat: Jl. Ba'a - Holoama, Kel. Mokdale, Kec. Lobalain, Kab. Rote Ndao, NTT";
@@ -2564,6 +2578,7 @@ function simpanPengaturanUjian() {
 
     // Perbarui teks & logo secara instan
     document.getElementById('display-jenis-ujian').innerText = jenis;
+    document.getElementById('display-mata-pelajaran').innerText = adminMataPelajaran;
     document.getElementById('display-tahun-pelajaran').innerText = adminTahunPelajaran;
     document.getElementById('display-nama-sekolah').innerText = adminNamaSekolah;
     document.getElementById('display-nama-sekolah-admin').innerText = adminNamaSekolah;
